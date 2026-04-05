@@ -52,8 +52,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .card-n{margin-top:5px;font-size:12px;font-weight:500;color:var(--text2);line-height:1.3;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-/* ═══════ GRID (search/library) — 3-col on phone ═══════ */
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 var(--pad)}
+/* ═══════ GRID (search/library) — 2-col Sora style ═══════ */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:0 var(--pad)}
 .pgrid .card{width:100%}
 
 /* ═══════ SEARCH BAR — Sora style ═══════ */
@@ -228,7 +228,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* ═══════ RESPONSIVE ═══════ */
 @media(max-width:374px){
   .card{width:100px}
-  .pgrid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:10px}
   .dt-hero{flex-direction:column;align-items:center;text-align:center}
   .dt-poster{width:55%;max-width:160px}
   .dt-info{padding-top:0}
@@ -236,19 +236,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 }
 @media(min-width:375px) and (max-width:413px){
   .card{width:110px}
-  .pgrid{grid-template-columns:repeat(3,1fr);gap:10px}
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:12px}
 }
 @media(min-width:414px) and (max-width:499px){
   .card{width:120px}
-  .pgrid{grid-template-columns:repeat(3,1fr);gap:12px}
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:14px}
 }
 @media(min-width:500px){
   .card{width:130px}
-  .pgrid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+  .pgrid{grid-template-columns:repeat(3,1fr);gap:14px}
 }
 @media(min-width:768px){
   .card{width:145px}
-  .pgrid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
   .pg-hd h1{font-size:38px}
   .dt-hero{max-width:700px}
   .srcg{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
@@ -450,7 +450,11 @@ return '<div class="sec"><div class="sec-t">'+name+'</div><div class="hrow">'+it
 /* RENDER HOME — clean rows, no chips, no banner */
 function renderHome(){
 let h='';
-h+=rowH('Trending Now',D.trending);
+const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const now=new Date();
+const dayStr=days[now.getDay()]+', '+String(now.getDate()).padStart(2,'0')+' '+months[now.getMonth()]+' '+now.getFullYear();
+h+=rowH('Trending on '+dayStr,D.trending);
 h+=rowH('Popular Movies',D.pop_movie);
 h+=rowH('Top Rated Movies',D.top_movie);
 h+=rowH('Now Playing',D.now_playing);
