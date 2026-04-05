@@ -112,6 +112,7 @@ color:var(--text-sec);transition:color var(--ease)}
 .t10-n{font-family:var(--font-h);font-size:6.5rem;font-weight:800;line-height:.78;
 color:transparent;-webkit-text-stroke:3px var(--primary);margin-right:-18px;z-index:1;position:relative;flex-shrink:0}
 .t10 .card{width:115px}
+.t10 .card-name{display:none}
 
 /* DETAIL */
 .detail{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.88);
@@ -211,18 +212,49 @@ padding:4px 10px;color:var(--text-muted);font-size:.5625rem;font-weight:500;tran
 
 /* RESPONSIVE */
 @media(max-width:768px){
-:root{--pad:1rem;--nav-h:54px}
+:root{--pad:.875rem;--nav-h:50px}
 .nav-tabs{display:none}
-.hero{height:52vh;min-height:300px}
-.hero-title{font-size:1.6rem}
-.hero-ct{max-width:75%;bottom:18%}
-.hero-desc{-webkit-line-clamp:2;font-size:.8rem}
-.card{width:125px}.card.land{width:220px}
-.t10{width:170px}.t10-n{font-size:4rem}.t10 .card{width:95px}
-.section-title{font-size:1rem}
-.detail-h{font-size:1.4rem}
-.src-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
-.mob-nav{display:flex}.content{padding-bottom:70px}
+.nav-logo{font-size:1.2rem;margin-right:0}
+.hero{height:50vh;min-height:280px;max-height:420px}
+.hero-title{font-size:1.5rem}
+.hero-ct{max-width:80%;bottom:16%;left:var(--pad)}
+.hero-meta{gap:6px;font-size:.75rem;flex-wrap:wrap}
+.hero-desc{-webkit-line-clamp:2;font-size:.78rem;line-height:1.5}
+.hero-btns{gap:8px;margin-top:10px}
+.btn-play{padding:9px 22px;font-size:.8125rem}
+.btn-info{padding:9px 16px;font-size:.8125rem}
+.content{margin-top:-40px;padding-bottom:70px}
+.section{margin-bottom:2rem}
+.section-title{font-size:.9375rem}
+.section-title::before{width:3px;height:1em;margin-right:8px}
+.card{width:110px}.card.land{width:175px}
+.card-name{font-size:.75rem;margin-top:5px}
+.card-badge{font-size:.5625rem;padding:2px 5px}
+.t10{width:150px}.t10-n{font-size:3.5rem;margin-right:-14px;-webkit-text-stroke:2.5px var(--primary)}.t10 .card{width:85px}
+.t10-header .t10-big{font-size:1.5rem}
+.t10-header .t10-sub{font-size:.75rem}
+.row .swiper{padding:0}
+.detail-h{font-size:1.35rem}
+.detail-body{padding:0 var(--pad) 40px;margin-top:-80px}
+.detail-desc{font-size:.8125rem;line-height:1.6}
+.detail-acts{gap:8px}
+.src-grid{grid-template-columns:repeat(3,1fr);gap:6px}
+.ep-grid{grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:4px}
+.search{padding:60px var(--pad) 30px}
+.search-bar{padding:10px 14px;font-size:.875rem;margin-bottom:20px}
+.search-res{grid-template-columns:repeat(3,1fr);gap:10px}
+.mob-nav{display:flex}
+.app-footer{padding:30px var(--pad) 24px;font-size:.6875rem}
+}
+@media(max-width:390px){
+:root{--pad:.75rem}
+.hero{height:48vh;min-height:260px}
+.hero-title{font-size:1.3rem}
+.hero-ct{max-width:85%}
+.card{width:100px}.card.land{width:160px}
+.t10{width:135px}.t10-n{font-size:3rem;margin-right:-12px}.t10 .card{width:78px}
+.search-res{grid-template-columns:repeat(3,1fr);gap:8px}
+.src-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(min-width:1200px){
 .card{width:175px}.card.land{width:300px}
@@ -291,7 +323,7 @@ line-height:1.7;border-top:1px solid rgba(255,255,255,.05);margin-top:20px}
 <a class="sb-link" onclick="openExt('https://hianime.to/home')">HiAnime</a>
 <div class="sb-h">Info</div>
 <a class="sb-link" onclick="openExt('https://fmhy.net/')">FMHY Wiki</a>
-<div style="margin-top:20px;font-size:.6875rem;color:var(--text-muted)">FMHY Stream v8</div>
+<div style="margin-top:20px;font-size:.6875rem;color:var(--text-muted)">FMHY Stream v10</div>
 </aside>
 
 <!-- HERO -->
