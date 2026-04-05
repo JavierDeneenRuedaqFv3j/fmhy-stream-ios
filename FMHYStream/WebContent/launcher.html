@@ -10,195 +10,206 @@
   --bg:#FFFFFF;--bg2:#F2F2F7;--card:#FFFFFF;
   --accent:#00BCD4;--accent-dk:#0097A7;--accent-lt:rgba(0,188,212,0.10);
   --text:#1C1C1E;--text2:#3C3C43;--text3:#8E8E93;--text4:#C7C7CC;
-  --border:rgba(60,60,67,0.08);--shadow:0 1px 3px rgba(0,0,0,0.06);
+  --border:rgba(60,60,67,0.10);--sep:rgba(60,60,67,0.12);
+  --shadow:0 1px 3px rgba(0,0,0,0.06);
   --r:12px;--rs:8px;--rl:16px;
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Roboto,"Segoe UI",Arial,sans-serif;
-  --tabh:56px;--safeb:env(safe-area-inset-bottom,0px);
+  --tabh:50px;--safeb:env(safe-area-inset-bottom,0px);
   --pad:16px;--ease:.25s cubic-bezier(.4,0,.2,1)
 }
 html{font-family:var(--font);background:var(--bg);color:var(--text);
   -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 body{min-height:100vh;min-height:100dvh;overflow-x:hidden;
-  padding-bottom:calc(var(--tabh) + var(--safeb) + 8px)}
+  padding-bottom:calc(var(--tabh) + var(--safeb) + 12px)}
 img{display:block;max-width:100%}a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;-webkit-appearance:none}
 ::-webkit-scrollbar{display:none}*{scrollbar-width:none}
 
-/* PAGES */
+/* ═══════ PAGES ═══════ */
 .page{display:none;min-height:100vh;min-height:100dvh}
 .page.on{display:block;animation:pgIn .28s ease both}
-@keyframes pgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-/* PAGE HEADER */
-.pg-hd{padding:calc(env(safe-area-inset-top,20px) + 12px) var(--pad) 6px;
-  position:sticky;top:0;background:rgba(255,255,255,.88);
+/* ═══════ PAGE HEADER — Sora bold italic ═══════ */
+.pg-hd{padding:calc(env(safe-area-inset-top,20px) + 16px) var(--pad) 8px;
+  position:sticky;top:0;background:rgba(255,255,255,.92);
   backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);z-index:50}
-.pg-hd h1{font-size:28px;font-weight:700;letter-spacing:-.4px}
+.pg-hd h1{font-size:34px;font-weight:700;font-style:italic;letter-spacing:-.5px;color:var(--text)}
 
-/* FILTER CHIPS */
-.chips{display:flex;gap:8px;padding:10px var(--pad) 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.chip{padding:7px 16px;border-radius:20px;font-size:13px;font-weight:500;color:var(--text3);
-  background:var(--bg2);white-space:nowrap;transition:all var(--ease)}
-.chip.on{background:var(--accent);color:#fff}
-
-/* SECTION */
-.sec{margin-bottom:24px}
-.sec-t{font-size:18px;font-weight:700;padding:0 var(--pad);margin-bottom:10px;letter-spacing:-.3px}
-
-/* HORIZONTAL SCROLL */
-.hrow{display:flex;overflow-x:auto;gap:12px;padding:0 var(--pad) 6px;
+/* ═══════ SECTION — horizontal scroll ═══════ */
+.sec{margin-bottom:22px}
+.sec-t{font-size:16px;font-weight:700;padding:0 var(--pad);margin-bottom:10px;letter-spacing:-.2px;color:var(--text)}
+.hrow{display:flex;overflow-x:auto;gap:12px;padding:0 var(--pad) 4px;
   -webkit-overflow-scrolling:touch;scroll-behavior:smooth}
 
-/* POSTER CARD */
-.card{flex-shrink:0;width:130px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s}
+/* ═══════ POSTER CARD — Sora style (poster + title only) ═══════ */
+.card{flex-shrink:0;width:120px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s}
 .card:active{transform:scale(.96)}
-.card-p{width:100%;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;background:var(--bg2);position:relative}
+.card-p{width:100%;aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:var(--bg2);position:relative}
 .card-p img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
 .card-p .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#E8E8ED,#D1D1D6);color:var(--text4);font-size:32px}
-.card-n{margin-top:6px;font-size:12px;font-weight:500;color:var(--text2);line-height:1.35;
+  background:linear-gradient(135deg,#E8E8ED,#D1D1D6);color:var(--text4);font-size:28px}
+.card-n{margin-top:5px;font-size:12px;font-weight:500;color:var(--text2);line-height:1.3;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-s{font-size:11px;color:var(--text3);margin-top:2px}
 
-/* LANDSCAPE CARD */
-.card-l{flex-shrink:0;width:260px;cursor:pointer;transition:transform .15s}
-.card-l:active{transform:scale(.96)}
-.card-l .card-p{aspect-ratio:16/9;border-radius:var(--r)}
-.card-l .card-n{font-size:13px;font-weight:600}
+/* ═══════ GRID (search/library) — 3-col on phone ═══════ */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 var(--pad)}
+.pgrid .card{width:100%}
 
-/* FEATURED BANNER */
-.feat{margin:4px var(--pad) 20px;border-radius:var(--rl);overflow:hidden;position:relative;
-  cursor:pointer;aspect-ratio:16/9;background:var(--bg2)}
-.feat:active{transform:scale(.98);transition:transform .12s}
-.feat img{width:100%;height:100%;object-fit:cover}
-.feat-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72) 0%,transparent 55%)}
-.feat-info{position:absolute;bottom:16px;left:16px;right:16px;color:#fff}
-.feat-badge{display:inline-block;padding:3px 8px;background:var(--accent);border-radius:4px;
-  font-size:10px;font-weight:700;letter-spacing:.5px;margin-bottom:6px}
-.feat-info h2{font-size:20px;font-weight:700;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
-.feat-info p{font-size:12px;opacity:.85}
-
-/* GRID (search/library) */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px;padding:0 var(--pad)}
-
-/* SEARCH BAR */
-.sbar{margin:0 var(--pad) 16px;display:flex;align-items:center;gap:10px;padding:10px 14px;
-  background:var(--bg2);border-radius:var(--r);border:1.5px solid transparent;transition:border-color var(--ease)}
+/* ═══════ SEARCH BAR — Sora style ═══════ */
+.sbar-w{display:flex;align-items:center;gap:10px;margin:0 var(--pad) 14px}
+.sbar{flex:1;display:flex;align-items:center;gap:8px;padding:9px 12px;
+  background:var(--bg2);border-radius:10px;border:1.5px solid transparent;transition:border-color var(--ease)}
 .sbar:focus-within{border-color:var(--accent)}
 .sbar svg{flex-shrink:0;color:var(--text3)}
-.sbar input{flex:1;border:none;outline:none;background:none;font-size:15px;color:var(--text);font-family:var(--font)}
+.sbar input{flex:1;border:none;outline:none;background:none;font-size:16px;color:var(--text);font-family:var(--font)}
 .sbar input::placeholder{color:var(--text4)}
+.sbar .s-clear{display:none;width:18px;height:18px;border-radius:50%;background:var(--text4);
+  align-items:center;justify-content:center;flex-shrink:0;padding:0}
+.sbar .s-clear svg{color:#fff;width:10px;height:10px}
+.sbar input:not(:placeholder-shown)~.s-clear{display:flex}
+.s-cancel{font-size:16px;font-weight:400;color:var(--accent);white-space:nowrap;display:none}
+.sbar-w.active .s-cancel{display:block}
 
-/* LIVE CARDS */
-.live-s{padding:0 var(--pad);margin-bottom:24px}
+/* ═══════ CATEGORY SELECTOR (replaces Sora module selector) ═══════ */
+.cat-sel{display:flex;align-items:center;gap:4px;padding:5px 12px;
+  background:var(--bg2);border-radius:8px;font-size:13px;font-weight:500;color:var(--text2);
+  margin-left:auto;white-space:nowrap}
+.cat-sel svg{width:14px;height:14px;color:var(--text3)}
+
+/* ═══════ LIVE CARDS ═══════ */
+.live-s{padding:0 var(--pad);margin-bottom:22px}
 .live-h{font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;
   margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .ldot{width:8px;height:8px;border-radius:50%;background:#FF3B30;animation:pls 1.5s ease infinite}
 @keyframes pls{0%,100%{opacity:1}50%{opacity:.35}}
-.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
 .lcard{display:flex;align-items:center;gap:10px;padding:12px;background:var(--bg2);border-radius:var(--r);
   cursor:pointer;transition:all var(--ease);border:1px solid var(--border)}
-.lcard:hover{background:var(--accent-lt);border-color:rgba(0,188,212,.18)}
 .lcard:active{transform:scale(.97)}
-.lcard-i{font-size:22px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+.lcard-i{font-size:20px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;
   background:var(--card);border-radius:10px;box-shadow:var(--shadow);flex-shrink:0}
 .lcard-n{font-size:13px;font-weight:600;color:var(--text)}
 .lcard-d{font-size:11px;color:var(--text3);margin-top:1px}
 
-/* MORE / SETTINGS */
-.mg{margin:0 var(--pad) 20px}
-.mg-t{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;
-  margin-bottom:8px;padding-left:4px}
-.mlist{background:var(--bg2);border-radius:var(--r);overflow:hidden}
-.mitem{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;
-  transition:background var(--ease);border-bottom:1px solid var(--border)}
-.mitem:last-child{border-bottom:none}
-.mitem:active{background:rgba(0,0,0,.04)}
-.mic{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;
-  font-size:15px;flex-shrink:0;color:#fff}
-.mitem-t{flex:1}.mitem-t .mn{font-size:14px;font-weight:500;color:var(--text)}.mitem-t .ms{font-size:12px;color:var(--text3);margin-top:1px}
-.mchev{color:var(--text4);flex-shrink:0}
+/* ═══════ SETTINGS — iOS grouped table ═══════ */
+.sg{margin:0 var(--pad) 20px}
+.sg-t{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;
+  margin-bottom:6px;padding-left:16px}
+.slist{background:var(--bg2);border-radius:var(--r);overflow:hidden}
+.sitem{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;
+  transition:background var(--ease);border-bottom:.5px solid var(--sep)}
+.sitem:last-child{border-bottom:none}
+.sitem:active{background:rgba(0,0,0,.04)}
+.sitem-ic{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;color:#fff}
+.sitem-t{flex:1;font-size:15px;font-weight:400;color:var(--text)}
+.sitem-sub{font-size:13px;color:var(--text3);margin-top:1px}
+.schev{color:var(--text4);flex-shrink:0}
 
-/* EMPTY STATE */
+/* ═══════ EMPTY STATE ═══════ */
 .empty{text-align:center;padding:80px 20px;color:var(--text3)}
 .empty-i{font-size:44px;margin-bottom:12px;opacity:.5}
 .empty h3{font-size:16px;font-weight:600;color:var(--text2);margin-bottom:6px}
 .empty p{font-size:13px;line-height:1.5}
 
-/* TAB BAR */
+/* ═══════ TAB BAR — 4 tabs, Sora style ═══════ */
 .tabbar{position:fixed;bottom:0;left:0;right:0;height:calc(var(--tabh) + var(--safeb));
-  background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-top:.5px solid rgba(60,60,67,.12);z-index:100;display:flex;justify-content:space-around;
-  align-items:flex-start;padding-top:6px;padding-bottom:var(--safeb)}
-.ti{display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px 10px;
-  color:var(--text3);font-size:10px;font-weight:500;transition:color var(--ease);min-width:52px}
+  background:rgba(249,249,249,.94);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-top:.5px solid var(--sep);z-index:100;display:flex;justify-content:space-around;
+  align-items:flex-start;padding-top:5px;padding-bottom:var(--safeb)}
+.ti{display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px 12px;
+  color:var(--text3);font-size:10px;font-weight:500;transition:color var(--ease);min-width:60px}
 .ti.on{color:var(--accent)}
-.ti svg{width:24px;height:24px;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
-.ti.on svg{transform:scale(1.1)}
+.ti svg{width:22px;height:22px}
 
-/* DETAIL MODAL */
+/* ═══════ DETAIL — Sora side-by-side layout ═══════ */
 .detail{position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;
   display:none;-webkit-overflow-scrolling:touch}
 .detail.open{display:block;animation:dtIn .3s ease both}
-@keyframes dtIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.dt-x{position:fixed;top:calc(env(safe-area-inset-top,8px) + 8px);right:12px;z-index:210;
-  width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.06);
-  display:flex;align-items:center;justify-content:center}
-.dt-x:active{background:rgba(0,0,0,.12)}
-.dt-pw{display:flex;justify-content:center;padding:calc(env(safe-area-inset-top,20px) + 50px) var(--pad) 20px;
-  background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
-.dt-poster{width:180px;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;
-  box-shadow:0 8px 28px rgba(0,0,0,.14)}
-.dt-poster img{width:100%;height:100%;object-fit:cover}
-.dt-body{padding:0 var(--pad) 50px}
-.dt-title{font-size:22px;font-weight:700;text-align:center;margin-bottom:8px;letter-spacing:-.3px}
-.dt-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:13px;color:var(--text3)}
-.dt-meta .st{color:#FF9500;font-weight:600}
-.dt-genres{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.dt-genre{padding:4px 10px;background:var(--bg2);border-radius:12px;font-size:11px;font-weight:500;color:var(--text3)}
-.dt-syn{margin-bottom:16px}
-.dt-syn h4{font-size:14px;font-weight:600;margin-bottom:6px}
-.dt-syn p{font-size:13px;line-height:1.65;color:var(--text2)}
-.dt-syn p.cl{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.dt-syn .tg{font-size:12px;font-weight:600;color:var(--accent);margin-top:4px;cursor:pointer;display:inline-block}
+@keyframes dtIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* PLAY BUTTON */
-.dt-play{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;
-  background:var(--accent);color:#fff;font-size:15px;font-weight:600;border-radius:var(--r);
-  margin-bottom:10px;transition:all var(--ease);box-shadow:0 4px 14px rgba(0,188,212,.28)}
-.dt-play:hover{background:var(--accent-dk)}
-.dt-play:active{transform:scale(.98);box-shadow:0 2px 8px rgba(0,188,212,.2)}
+.dt-back{position:sticky;top:0;z-index:210;display:flex;align-items:center;gap:4px;
+  padding:calc(env(safe-area-inset-top,8px) + 10px) var(--pad) 10px;
+  background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  font-size:17px;color:var(--accent);font-weight:400}
+.dt-back svg{width:20px;height:20px}
+
+.dt-hero{display:flex;gap:16px;padding:8px var(--pad) 20px;align-items:flex-start}
+.dt-poster{width:38%;max-width:180px;flex-shrink:0;aspect-ratio:2/3;border-radius:10px;overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.dt-poster img{width:100%;height:100%;object-fit:cover}
+.dt-info{flex:1;min-width:0;padding-top:4px}
+.dt-title{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:6px;color:var(--text);line-height:1.2}
+.dt-meta{font-size:13px;color:var(--text3);margin-bottom:8px;line-height:1.5}
+.dt-meta .dt-yr{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.dt-meta .dt-yr svg{width:14px;height:14px;color:var(--text3)}
+.dt-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;
+  background:rgba(76,175,80,0.12);border-radius:6px;font-size:12px;font-weight:500;color:#4CAF50;margin-top:4px}
+.dt-badge svg{width:14px;height:14px}
+
+/* Synopsis */
+.dt-syn{padding:0 var(--pad) 14px}
+.dt-syn-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.dt-syn-hd h4{font-size:16px;font-weight:700;color:var(--text)}
+.dt-syn-hd .tg{font-size:14px;font-weight:400;color:var(--accent);cursor:pointer}
+.dt-syn p{font-size:14px;line-height:1.6;color:var(--text2)}
+.dt-syn p.cl{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Play button — Sora teal rounded */
+.dt-play{display:flex;align-items:center;justify-content:center;gap:8px;
+  width:calc(100% - 32px);margin:0 var(--pad) 10px;padding:14px;
+  background:var(--accent);color:#000;font-size:16px;font-weight:600;border-radius:14px;
+  transition:all var(--ease)}
+.dt-play:active{transform:scale(.98);opacity:.9}
 .dt-play svg{width:18px;height:18px;fill:currentColor}
 
-/* LIST BUTTON */
-.dt-list{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;
-  background:var(--bg2);color:var(--text2);font-size:14px;font-weight:500;border-radius:var(--r);
-  margin-bottom:20px;border:1px solid var(--border);transition:all var(--ease)}
-.dt-list:active{background:rgba(0,0,0,.04)}
+/* Bookmark button */
+.dt-bm{display:flex;align-items:center;justify-content:center;gap:6px;
+  width:calc(100% - 32px);margin:0 var(--pad) 20px;padding:12px;
+  background:var(--bg2);color:var(--text2);font-size:14px;font-weight:500;border-radius:14px;
+  border:1px solid var(--border);transition:all var(--ease)}
+.dt-bm:active{background:rgba(0,0,0,.04)}
+.dt-bm svg{width:18px;height:18px}
 
-/* EPISODES */
-.ep-w{margin-bottom:20px}
-.ep-w h4{font-size:14px;font-weight:600;margin-bottom:8px}
-.ep-sel{padding:8px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);
-  color:var(--text);font-family:var(--font);font-size:13px;outline:none;margin-bottom:8px;-webkit-appearance:none;
+/* Episodes — Sora row style with thumbnail + progress */
+.ep-w{padding:0 var(--pad) 16px}
+.ep-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ep-hd h4{font-size:16px;font-weight:700;color:var(--text)}
+.ep-hd .ep-bm{color:var(--accent);display:flex;align-items:center}
+.ep-hd .ep-bm svg{width:20px;height:20px}
+.ep-sel{padding:7px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);
+  color:var(--text);font-family:var(--font);font-size:13px;outline:none;margin-bottom:10px;-webkit-appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
-.ep-sel option{background:var(--bg)}
-.epg{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:6px}
-.ep-b{padding:8px 4px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);
-  font-size:12px;font-weight:500;color:var(--text3);text-align:center;transition:all var(--ease)}
-.ep-b:hover{border-color:var(--accent);color:var(--accent)}
-.ep-b.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.ep-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:.5px solid var(--sep);cursor:pointer;
+  transition:background .15s}
+.ep-row:active{background:rgba(0,0,0,.03);border-radius:8px}
+.ep-row:last-child{border-bottom:none}
+.ep-thumb{width:60px;height:40px;border-radius:6px;background:var(--bg2);overflow:hidden;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center}
+.ep-thumb img{width:100%;height:100%;object-fit:cover}
+.ep-thumb .ep-ph{font-size:16px;color:var(--text4)}
+.ep-name{flex:1;font-size:14px;font-weight:500;color:var(--text)}
+.ep-prog{width:36px;height:36px;position:relative;flex-shrink:0}
+.ep-prog svg{width:36px;height:36px;transform:rotate(-90deg)}
+.ep-prog circle{fill:none;stroke-width:2}
+.ep-prog .bg{stroke:var(--bg2)}
+.ep-prog .fg{stroke:var(--accent);stroke-linecap:round}
+.ep-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:8px;font-weight:600;color:var(--text3)}
 
-/* SOURCES */
-.src-s{margin-bottom:16px}
-.src-s h4{font-size:14px;font-weight:600;margin-bottom:8px}
+/* Sources */
+.src-s{padding:0 var(--pad) 16px}
+.src-s h4{font-size:16px;font-weight:700;margin-bottom:10px;color:var(--text)}
 .srcg{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
 .src-b{padding:10px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);
   font-size:12px;font-weight:500;color:var(--text2);text-align:center;transition:all var(--ease)}
-.src-b:hover{border-color:var(--accent);color:var(--accent)}
+.src-b:active{border-color:var(--accent);color:var(--accent)}
 .src-b.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.src-l{font-size:11px;font-weight:600;color:var(--accent);margin:14px 0 8px;text-transform:uppercase;letter-spacing:.5px}
+.src-l{font-size:12px;font-weight:600;color:var(--accent);margin:8px 0 8px;text-transform:uppercase;letter-spacing:.5px;
+  padding:0 var(--pad)}
 
 /* PLAYER */
 .player{position:fixed;inset:0;z-index:300;background:#000;display:none;flex-direction:column}
@@ -211,29 +222,39 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .pl-tabs{display:flex;gap:4px;overflow-x:auto;flex-shrink:0}
 .pl-tab{padding:6px 10px;font-size:11px;font-weight:500;color:rgba(255,255,255,.5);
   background:rgba(255,255,255,.08);border-radius:6px;white-space:nowrap;transition:all var(--ease)}
-.pl-tab:hover{color:rgba(255,255,255,.8)}
 .pl-tab.on{color:#fff;background:var(--accent)}
 .pl-frame{flex:1;width:100%;border:none;background:#000}
 
-/* RESPONSIVE */
-@media(max-width:390px){
-  .card{width:108px}.card-l{width:220px}
-  .pgrid{grid-template-columns:repeat(3,1fr);gap:10px}
-  .lgrid{grid-template-columns:1fr 1fr;gap:8px}
-  .dt-poster{width:150px}
-  .pg-hd h1{font-size:24px}
+/* ═══════ RESPONSIVE ═══════ */
+@media(max-width:374px){
+  .card{width:100px}
+  .pgrid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .dt-hero{flex-direction:column;align-items:center;text-align:center}
+  .dt-poster{width:55%;max-width:160px}
+  .dt-info{padding-top:0}
+  .pg-hd h1{font-size:28px}
 }
-@media(min-width:500px){.card{width:140px}.card-l{width:280px}}
+@media(min-width:375px) and (max-width:413px){
+  .card{width:110px}
+  .pgrid{grid-template-columns:repeat(3,1fr);gap:10px}
+}
+@media(min-width:414px) and (max-width:499px){
+  .card{width:120px}
+  .pgrid{grid-template-columns:repeat(3,1fr);gap:12px}
+}
+@media(min-width:500px){
+  .card{width:130px}
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+}
 @media(min-width:768px){
-  .card{width:155px}.card-l{width:300px}
+  .card{width:145px}
   .pgrid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
-  .pg-hd h1{font-size:32px}
-  .feat{aspect-ratio:2.5/1}
-  .dt-body{max-width:800px;margin:0 auto}
+  .pg-hd h1{font-size:38px}
+  .dt-hero{max-width:700px}
   .srcg{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 }
 @media(min-width:1024px){
-  .card{width:165px}
+  .card{width:155px}
   .lgrid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 }
 </style>
@@ -246,26 +267,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 <!-- HOME -->
 <section class="page on" id="pgHome">
 <header class="pg-hd"><h1>Home</h1></header>
-<div class="chips" id="homeChips"></div>
-<div id="homeFeat"></div>
 <div id="homeRows"></div>
-</section>
-
-<!-- SEARCH -->
-<section class="page" id="pgSearch">
-<header class="pg-hd"><h1>Search</h1></header>
-<div class="sbar">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-<input id="searchIn" type="text" placeholder="Search movies, shows, anime...">
-</div>
-<div class="chips" id="searchCats" style="padding-top:0"></div>
-<div id="searchGrid" class="pgrid"></div>
-</section>
-
-<!-- LIVE -->
-<section class="page" id="pgLive">
-<header class="pg-hd"><h1>Live TV</h1></header>
-<div id="liveContent"></div>
 </section>
 
 <!-- LIBRARY -->
@@ -274,43 +276,73 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 <div id="libContent"></div>
 </section>
 
-<!-- MORE -->
-<section class="page" id="pgMore">
-<header class="pg-hd"><h1>More</h1></header>
-<div id="moreContent"></div>
+<!-- SEARCH -->
+<section class="page" id="pgSearch">
+<header class="pg-hd">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <h1>Search</h1>
+    <button class="cat-sel" id="catSelBtn" onclick="toggleCatMenu()">
+      <span id="catSelLabel">All</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </div>
+</header>
+<div class="sbar-w" id="sbarWrap">
+  <div class="sbar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="searchIn" type="text" placeholder="Search movies, shows, anime...">
+    <button class="s-clear" onclick="clearSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <button class="s-cancel" onclick="cancelSearch()">Cancel</button>
+</div>
+<div id="searchGrid" class="pgrid"></div>
+</section>
+
+<!-- SETTINGS -->
+<section class="page" id="pgSettings">
+<header class="pg-hd"><h1>Settings</h1></header>
+<div id="settingsContent"></div>
 </section>
 
 </main>
 
-<!-- TAB BAR -->
+<!-- CATEGORY DROPDOWN -->
+<div id="catMenu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:150;background:rgba(0,0,0,.3)" onclick="closeCatMenu()">
+<div style="position:absolute;top:90px;right:16px;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);min-width:180px;overflow:hidden" onclick="event.stopPropagation()">
+<div id="catMenuItems"></div>
+</div></div>
+
+<!-- TAB BAR — 4 tabs matching Sora -->
 <nav class="tabbar" id="tabbar">
-<button class="ti on" data-tab="home">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-<span>Home</span>
+<button class="ti on" data-tab="home" onclick="go('home')">
+  <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3l9 7.5V21a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1V10.5L12 3z"/></svg>
+  <span>Home</span>
 </button>
-<button class="ti" data-tab="search">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-<span>Search</span>
+<button class="ti" data-tab="library" onclick="go('library')">
+  <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M4 4h4v16H4V4zm6 2h4v14h-4V6zm6-4h4v18h-4V2z"/></svg>
+  <span>Library</span>
 </button>
-<button class="ti" data-tab="live">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 010 8.49"/><path d="M7.76 16.24a6 6 0 010-8.49"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M4.93 19.07a10 10 0 010-14.14"/></svg>
-<span>Live</span>
+<button class="ti" data-tab="search" onclick="go('search')">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="10.5" cy="10.5" r="7"/><line x1="21" y1="21" x2="15.8" y2="15.8"/></svg>
+  <span>Search</span>
 </button>
-<button class="ti" data-tab="library">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-<span>Library</span>
-</button>
-<button class="ti" data-tab="more">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-<span>More</span>
+<button class="ti" data-tab="settings" onclick="go('settings')">
+  <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.14 12.94a7.07 7.07 0 000-1.88l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.33a.49.49 0 00-.59-.22l-2.39.96a7.04 7.04 0 00-1.63-.94l-.36-2.54A.48.48 0 0013.92 2h-3.84a.48.48 0 00-.48.41l-.36 2.54c-.59.24-1.13.57-1.63.94l-2.39-.96a.49.49 0 00-.59.22L2.71 8.48a.49.49 0 00.12.61l2.03 1.58a7.07 7.07 0 000 1.88L2.83 14.1a.49.49 0 00-.12.61l1.92 3.33c.12.22.37.29.59.22l2.39-.96c.5.37 1.04.7 1.63.94l.36 2.54c.04.24.25.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.57 1.63-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.33a.49.49 0 00-.12-.61l-2.03-1.56zM12 15.5A3.5 3.5 0 1115.5 12 3.5 3.5 0 0112 15.5z"/></svg>
+  <span>Settings</span>
 </button>
 </nav>
 
 <!-- DETAIL -->
 <div class="detail" id="detail">
-<button class="dt-x" onclick="closeDt()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-<div class="dt-pw"><div class="dt-poster" id="dtPoster"></div></div>
-<div class="dt-body" id="dtBody"></div>
+<div class="dt-back" onclick="closeDt()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+  <span id="dtBackLabel">Home</span>
+</div>
+<div class="dt-hero">
+  <div class="dt-poster" id="dtPoster"></div>
+  <div class="dt-info" id="dtInfo"></div>
+</div>
+<div id="dtBody"></div>
 </div>
 
 <!-- PLAYER -->
@@ -331,9 +363,8 @@ const D=window.STREAM_DATA||window.DATA||DATA,IMG='https://image.tmdb.org/t/p/';
 const P=(u,q=60)=>`https://wsrv.nl/?url=${encodeURIComponent(u)}&output=webp&q=${q}&n=-1`;
 const poster=(p,s='w342')=>p?P(IMG+s+p,50):'';
 const backdrop=(p,s='w780')=>p?P(IMG+s+p,65):'';
-const heroBg=(p)=>p?P(IMG+'w1280'+p,70):'';
 
-let tab='home',hf='all',myList=JSON.parse(localStorage.getItem('fl')||'[]'),cur=null;
+let tab='home',myList=JSON.parse(localStorage.getItem('fl')||'[]'),cur=null,searchCat='all';
 
 const SRCS=[
 {n:'Videasy',m:'https://player.videasy.net/movie/{id}',t:'https://player.videasy.net/tv/{id}/{s}/{e}'},
@@ -402,177 +433,224 @@ if(D.genres)Object.values(D.genres).forEach(v=>add(v));
 return a;
 }
 
-/* CARD HTML */
-function cardH(i,land){
-const t=title(i),img=land?backdrop(bp(i),'w780'):poster(pp(i));
-const cls=land?'card-l':'card';
-return`<div class="${cls}" onclick="openDt(${i.id},'${mt(i)}')">
-<div class="card-p">${img?`<img src="${img}" alt="${t}" loading="lazy">`:'<div class="ph">\ud83c\udfac</div>'}</div>
-<div class="card-n">${t}</div>
-${!land?`<div class="card-s">${year(i)}\u2009\u00b7\u2009\u2605${rate(i)}</div>`:''}
-</div>`;
+/* CARD — Sora style: poster + title only */
+function cardH(i){
+const t=title(i),img=poster(pp(i));
+return '<div class="card" onclick="openDt('+i.id+',\''+mt(i)+'\')">'
++'<div class="card-p">'+(img?'<img src="'+img+'" alt="" loading="lazy">':'<div class="ph">\ud83c\udfac</div>')+'</div>'
++'<div class="card-n">'+t+'</div></div>';
 }
 
 /* SECTION ROW */
-function rowH(name,items,land){
+function rowH(name,items){
 if(!items||!items.length)return'';
-return`<div class="sec"><div class="sec-t">${name}</div><div class="hrow">${items.map(i=>cardH(i,land)).join('')}</div></div>`;
+return '<div class="sec"><div class="sec-t">'+name+'</div><div class="hrow">'+items.map(i=>cardH(i)).join('')+'</div></div>';
 }
 
-/* RENDER HOME */
+/* RENDER HOME — clean rows, no chips, no banner */
 function renderHome(){
-const chips=[['All','all'],['Movies','movies'],['TV Shows','tv'],['Anime','anime'],['K-Drama','kdrama']];
-document.getElementById('homeChips').innerHTML=chips.map(c=>
-`<button class="chip${hf===c[1]?' on':''}" onclick="setHF('${c[1]}')">${c[0]}</button>`).join('');
-
-const feat=D.heroes&&D.heroes.length?D.heroes[0]:(D.trending&&D.trending[0]);
-if(feat&&hf==='all'){
-document.getElementById('homeFeat').innerHTML=`<div class="feat" onclick="openDt(${feat.id},'${mt(feat)}')">
-<img src="${heroBg(bp(feat))}" alt="${title(feat)}" loading="eager">
-<div class="feat-ov"></div>
-<div class="feat-info"><span class="feat-badge">\u2b50 FEATURED</span>
-<h2>${title(feat)}</h2>
-<p>${genres(feat).slice(0,3).join(' \u00b7 ')} \u00b7 ${year(feat)} \u00b7 \u2605 ${rate(feat)}</p></div></div>`;
-}else{document.getElementById('homeFeat').innerHTML=''}
-
-let h='',f=hf;
-if(f==='all'||f==='movies'){
-h+=rowH('\ud83d\udd25 Trending',D.trending,true);
+let h='';
+h+=rowH('Trending Now',D.trending);
 h+=rowH('Popular Movies',D.pop_movie);
 h+=rowH('Top Rated Movies',D.top_movie);
 h+=rowH('Now Playing',D.now_playing);
 h+=rowH('Coming Soon',D.upcoming);
-}
-if(f==='all'||f==='tv'){
 h+=rowH('Popular TV Shows',D.pop_tv);
 h+=rowH('Top Rated TV',D.top_tv);
 h+=rowH('Airing Today',D.airing);
-}
-if(f==='all'||f==='anime'){h+=rowH('Anime',D.anime)}
-if(f==='all'||f==='kdrama'){h+=rowH('K-Drama',D.kdrama)}
-if(f==='all'&&D.genres){
-for(const[k,v]of Object.entries(D.genres)){
-h+=rowH(k.charAt(0).toUpperCase()+k.slice(1),v);
+h+=rowH('Anime',D.anime);
+h+=rowH('K-Drama',D.kdrama);
+if(D.genres){for(const[k,v]of Object.entries(D.genres)){
+  h+=rowH(k.charAt(0).toUpperCase()+k.slice(1),v);
 }}
 document.getElementById('homeRows').innerHTML=h;
 }
-window.setHF=function(f){hf=f;renderHome();window.scrollTo({top:0,behavior:'smooth'})};
 
-/* RENDER SEARCH DEFAULT */
+/* RENDER SEARCH */
 function renderSearchDefault(){
-const items=(D.trending||D.pop_movie||[]).slice(0,24);
-const cats=[['Trending','trending'],['Movies','movies'],['TV','tv'],['Anime','anime']];
-document.getElementById('searchCats').innerHTML=cats.map(c=>
-`<button class="chip${c[1]==='trending'?' on':''}" onclick="searchCat('${c[1]}')">${c[0]}</button>`).join('');
-document.getElementById('searchGrid').innerHTML=items.map(i=>cardH(i)).join('');
-}
-window.searchCat=function(cat){
-document.querySelectorAll('#searchCats .chip').forEach(c=>c.classList.remove('on'));
-event.target.classList.add('on');
 let items;
-if(cat==='trending')items=(D.trending||[]).slice(0,24);
-else if(cat==='movies')items=(D.pop_movie||[]).slice(0,24);
-else if(cat==='tv')items=(D.pop_tv||[]).slice(0,24);
-else items=(D.anime||[]).slice(0,24);
+if(searchCat==='all')items=(D.trending||D.pop_movie||[]).slice(0,30);
+else if(searchCat==='movies')items=(D.pop_movie||[]).slice(0,30);
+else if(searchCat==='tv')items=(D.pop_tv||[]).slice(0,30);
+else if(searchCat==='anime')items=(D.anime||[]).slice(0,30);
+else items=(D.trending||[]).slice(0,30);
 document.getElementById('searchGrid').innerHTML=items.map(i=>cardH(i)).join('');
-};
-
-/* RENDER LIVE */
-function renderLive(){
-let h='<div class="live-s"><div class="live-h"><span class="ldot"></span> Live TV Channels</div><div class="lgrid">';
-h+=LIVE_TV.map(s=>`<div class="lcard" onclick="openExt('${s.u}')">
-<div class="lcard-i">${s.ic}</div><div><div class="lcard-n">${s.n}</div><div class="lcard-d">${s.d}</div></div></div>`).join('');
-h+='</div></div>';
-h+='<div class="live-s"><div class="live-h"><span class="ldot"></span> Live Sports</div><div class="lgrid">';
-h+=LIVE_SPORTS.map(s=>`<div class="lcard" onclick="openExt('${s.u}')">
-<div class="lcard-i">${s.ic}</div><div><div class="lcard-n">${s.n}</div><div class="lcard-d">${s.d}</div></div></div>`).join('');
-h+='</div></div>';
-document.getElementById('liveContent').innerHTML=h;
 }
+
+/* CATEGORY MENU */
+const CATS=[['All','all'],['Movies','movies'],['TV Shows','tv'],['Anime','anime']];
+window.toggleCatMenu=function(){
+const m=document.getElementById('catMenu');
+if(m.style.display==='none'){
+  document.getElementById('catMenuItems').innerHTML=CATS.map(c=>
+    '<div style="padding:12px 16px;font-size:15px;cursor:pointer;border-bottom:.5px solid rgba(0,0,0,.06);'
+    +(c[1]===searchCat?'color:var(--accent);font-weight:600':'color:var(--text)')
+    +'" onclick="pickCat(\''+c[1]+'\')">'+c[0]+'</div>'
+  ).join('');
+  m.style.display='block';
+}else{m.style.display='none'}
+};
+window.closeCatMenu=function(){document.getElementById('catMenu').style.display='none'};
+window.pickCat=function(c){
+searchCat=c;
+document.getElementById('catSelLabel').textContent=CATS.find(x=>x[1]===c)[0];
+closeCatMenu();
+renderSearchDefault();
+};
 
 /* RENDER LIBRARY */
 function renderLib(){
 const ml=allItems().filter(i=>myList.includes(i.id));
 if(ml.length){
-document.getElementById('libContent').innerHTML='<div class="pgrid" style="padding-top:8px">'+ml.map(i=>cardH(i)).join('')+'</div>';
+  document.getElementById('libContent').innerHTML='<div class="pgrid" style="padding-top:8px">'+ml.map(i=>cardH(i)).join('')+'</div>';
 }else{
-document.getElementById('libContent').innerHTML='<div class="empty"><div class="empty-i">\u2764\ufe0f</div><h3>Your library is empty</h3><p>Tap the heart on any movie or show to save it here</p></div>';
+  document.getElementById('libContent').innerHTML='<div class="empty"><div class="empty-i">\ud83d\udcda</div><h3>Your library is empty</h3><p>Tap the bookmark on any title to save it here</p></div>';
 }}
 
-/* RENDER MORE */
-function renderMore(){
-const chev='<svg class="mchev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>';
+/* RENDER SETTINGS — Sora grouped table */
+function renderSettings(){
+const chev='<svg class="schev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>';
 let h='';
-h+='<div class="mg"><div class="mg-t">Anime Sites</div><div class="mlist">';
+
+/* Main Settings */
+h+='<div class="sg"><div class="sg-t">MAIN SETTINGS</div><div class="slist">';
+h+='<div class="sitem" onclick="showLivePage(\'tv\')"><div class="sitem-ic" style="background:#FF9800">\ud83d\udcfa</div><div style="flex:1"><div class="sitem-t">Live TV</div><div class="sitem-sub">'+LIVE_TV.length+' channels</div></div>'+chev+'</div>';
+h+='<div class="sitem" onclick="showLivePage(\'sports\')"><div class="sitem-ic" style="background:#4CAF50">\u26bd</div><div style="flex:1"><div class="sitem-t">Live Sports</div><div class="sitem-sub">'+LIVE_SPORTS.length+' sources</div></div>'+chev+'</div>';
+h+='<div class="sitem"><div class="sitem-ic" style="background:var(--accent)">\ud83c\udfac</div><div style="flex:1"><div class="sitem-t">Sources</div><div class="sitem-sub">'+SRCS.length+' embed sources</div></div>'+chev+'</div>';
+h+='</div></div>';
+
+/* Anime Sites */
+h+='<div class="sg"><div class="sg-t">ANIME SITES</div><div class="slist">';
 [{n:'AnimeKai',u:'https://animekai.to/home',ic:'\u26a1',bg:'#FF6B35'},
 {n:'AnimePahe',u:'https://animepahe.pw/',ic:'\ud83c\udf8c',bg:'#E91E63'},
 {n:'HiAnime',u:'https://hianime.to/home',ic:'\ud83c\udfac',bg:'#9C27B0'},
 {n:'Miruro',u:'https://www.miruro.tv/',ic:'\u2728',bg:'#3F51B5'}
 ].forEach(s=>{
-h+=`<div class="mitem" onclick="openExt('${s.u}')"><div class="mic" style="background:${s.bg}">${s.ic}</div><div class="mitem-t"><div class="mn">${s.n}</div></div>${chev}</div>`;
+h+='<div class="sitem" onclick="openExt(\''+s.u+'\')"><div class="sitem-ic" style="background:'+s.bg+'">'+s.ic+'</div><div style="flex:1"><div class="sitem-t">'+s.n+'</div></div>'+chev+'</div>';
 });
 h+='</div></div>';
 
-h+='<div class="mg"><div class="mg-t">Resources</div><div class="mlist">';
-[{n:'FMHY Wiki',u:'https://fmhy.net/',ic:'\ud83d\udcda',bg:'#4CAF50',d:'Free Media Heck Yeah'},
-{n:'FMHY Video',u:'https://fmhy.net/video',ic:'\ud83c\udfac',bg:'#2196F3',d:'Streaming Resources'},
-{n:'DaddyLive TV',u:'https://dlstreams.top/24-7-channels.php',ic:'\ud83d\udcfa',bg:'#FF9800',d:'24/7 Live Channels'}
-].forEach(s=>{
-h+=`<div class="mitem" onclick="openExt('${s.u}')"><div class="mic" style="background:${s.bg}">${s.ic}</div><div class="mitem-t"><div class="mn">${s.n}</div><div class="ms">${s.d}</div></div>${chev}</div>`;
-});
+/* Info */
+h+='<div class="sg"><div class="sg-t">INFO</div><div class="slist">';
+h+='<div class="sitem"><div class="sitem-ic" style="background:var(--accent)">\ud83c\udfac</div><div style="flex:1"><div class="sitem-t">About</div><div class="sitem-sub">FMHY Stream v13 \u2014 Sora Edition</div></div>'+chev+'</div>';
+h+='<div class="sitem"><div class="sitem-ic" style="background:#8E8E93">\u2139\ufe0f</div><div style="flex:1"><div class="sitem-t">Disclaimer</div><div class="sitem-sub">Content from third-party services</div></div></div>';
 h+='</div></div>';
 
-h+='<div class="mg"><div class="mg-t">About</div><div class="mlist">';
-h+=`<div class="mitem"><div class="mic" style="background:var(--accent)">\ud83c\udfac</div><div class="mitem-t"><div class="mn">FMHY Stream</div><div class="ms">Version 12 \u2014 Sora Edition</div></div></div>`;
-h+=`<div class="mitem"><div class="mic" style="background:#8E8E93">\u2139\ufe0f</div><div class="mitem-t"><div class="mn">Disclaimer</div><div class="ms">Content provided by third-party embed services</div></div></div>`;
+/* Links */
+h+='<div class="sg"><div class="sg-t">LINKS</div><div class="slist">';
+h+='<div class="sitem" onclick="openExt(\'https://fmhy.net/\')"><div class="sitem-ic" style="background:#4CAF50">\ud83d\udcda</div><div style="flex:1"><div class="sitem-t">FMHY Wiki</div><div class="sitem-sub">Free Media Heck Yeah</div></div>'+chev+'</div>';
+h+='<div class="sitem" onclick="openExt(\'https://fmhy.net/video\')"><div class="sitem-ic" style="background:#2196F3">\ud83c\udfac</div><div style="flex:1"><div class="sitem-t">FMHY Video</div><div class="sitem-sub">Streaming Resources</div></div>'+chev+'</div>';
 h+='</div></div>';
 
 h+='<div style="text-align:center;padding:20px;font-size:11px;color:var(--text4)">Powered by FMHY \u00b7 For educational purposes only</div>';
-document.getElementById('moreContent').innerHTML=h;
+document.getElementById('settingsContent').innerHTML=h;
 }
+
+/* LIVE TV / SPORTS SUB-PAGE */
+window.showLivePage=function(type){
+const d=document.getElementById('detail');
+const items=type==='tv'?LIVE_TV:LIVE_SPORTS;
+const label=type==='tv'?'Live TV':'Live Sports';
+d.innerHTML='<div class="dt-back" onclick="closeDt()">'
++'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>'
++'<span>Settings</span></div>'
++'<div style="padding:0 16px 20px"><h2 style="font-size:24px;font-weight:700;font-style:italic;margin-bottom:16px">'+label+'</h2>'
++'<div class="lgrid">'
++items.map(s=>'<div class="lcard" onclick="openExt(\''+s.u+'\')">'
++'<div class="lcard-i">'+s.ic+'</div><div><div class="lcard-n">'+s.n+'</div><div class="lcard-d">'+s.d+'</div></div></div>').join('')
++'</div></div>';
+d.classList.add('open');
+document.body.style.overflow='hidden';
+};
 
 /* TAB SWITCHING */
 function switchTab(t){
 tab=t;
 document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-const map={home:'pgHome',search:'pgSearch',live:'pgLive',library:'pgLib',more:'pgMore'};
+const map={home:'pgHome',search:'pgSearch',library:'pgLib',settings:'pgSettings'};
 const pg=document.getElementById(map[t]);
 if(pg){pg.classList.add('on')}
 document.querySelectorAll('.ti').forEach(x=>x.classList.toggle('on',x.dataset.tab===t));
 if(t==='home')renderHome();
 if(t==='search'){renderSearchDefault();setTimeout(()=>document.getElementById('searchIn').focus(),100)}
-if(t==='live')renderLive();
 if(t==='library')renderLib();
-if(t==='more')renderMore();
+if(t==='settings')renderSettings();
 window.scrollTo({top:0});
 }
 window.go=function(t){switchTab(t)};
+
+/* SEARCH BAR FOCUS */
+document.getElementById('searchIn').addEventListener('focus',function(){
+document.getElementById('sbarWrap').classList.add('active');
+});
+window.cancelSearch=function(){
+document.getElementById('searchIn').value='';
+document.getElementById('searchIn').blur();
+document.getElementById('sbarWrap').classList.remove('active');
+renderSearchDefault();
+};
+window.clearSearch=function(){
+document.getElementById('searchIn').value='';
+document.getElementById('searchIn').focus();
+renderSearchDefault();
+};
 
 /* DETAIL */
 window.openDt=function(id,mtype){
 const i=allItems().find(x=>x.id===id);if(!i)return;cur=i;
 const t=title(i),y=year(i),r=rate(i),g=genres(i),inL=myList.includes(i.id),ani=isAni(i);
-document.getElementById('dtPoster').innerHTML=`<img src="${poster(pp(i),'w500')}" alt="${t}">`;
-let sh='';
-sh+=`<h2 class="dt-title">${t}</h2>`;
-sh+=`<div class="dt-meta"><span class="st">\u2605 ${r}</span><span>${y}</span><span>${mt(i)==='movie'?'Movie':'TV Series'}</span></div>`;
-sh+=`<div class="dt-genres">${g.map(x=>`<span class="dt-genre">${x}</span>`).join('')}</div>`;
-sh+=`<div class="dt-syn"><h4>Synopsis</h4><p class="cl" id="synP">${ov(i)||'No description available.'}</p><button class="tg" onclick="toggleSyn()">More</button></div>`;
-sh+=`<button class="dt-play" onclick="playSrc(0)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Start Watching</button>`;
-sh+=`<button class="dt-list" onclick="toggleList(${i.id})">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="${inL?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-${inL?'In Library':'Add to Library'}</button>`;
 
+/* Back label */
+const tabLabels={home:'Home',library:'Library',search:'Search',settings:'Settings'};
+document.getElementById('dtBackLabel').textContent=tabLabels[tab]||'Home';
+
+/* Poster */
+document.getElementById('dtPoster').innerHTML='<img src="'+poster(pp(i),'w500')+'" alt="">';
+
+/* Right side info */
+let ih='<div class="dt-title">'+t+'</div>';
+ih+='<div class="dt-meta"><div class="dt-yr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
++y+' '+((mt(i)==='movie')?'film':'series')+'</div></div>';
+ih+='<div class="dt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> '+g.slice(0,2).join(' \u00b7 ')+'</div>';
+document.getElementById('dtInfo').innerHTML=ih;
+
+/* Body */
+let sh='';
+/* Synopsis */
+sh+='<div class="dt-syn"><div class="dt-syn-hd"><h4>Synopsis</h4><button class="tg" onclick="toggleSyn()">Less</button></div>';
+sh+='<p id="synP">'+( ov(i)||'No description available.')+'</p></div>';
+
+/* Play button */
+sh+='<button class="dt-play" onclick="playSrc(0)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Start Watching</button>';
+
+/* Bookmark */
+sh+='<button class="dt-bm" onclick="toggleList('+i.id+')">'
++'<svg viewBox="0 0 24 24" fill="'+(inL?'currentColor':'none')+'" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg> '
++(inL?'In Library':'Add to Library')+'</button>';
+
+/* Episodes — Sora row style */
 if(mt(i)==='tv'){
-sh+=`<div class="ep-w"><h4>Episodes</h4>
-<select class="ep-sel" id="sSel">${Array.from({length:8},(_,n)=>`<option value="${n+1}">Season ${n+1}</option>`).join('')}</select>
-<div class="epg" id="epGrid">${Array.from({length:13},(_,n)=>`<button class="ep-b${n===0?' on':''}" data-ep="${n+1}" onclick="selEp(this)">${n+1}</button>`).join('')}</div></div>`;
+sh+='<div class="ep-w"><div class="ep-hd"><h4>Episodes</h4><div class="ep-bm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></div></div>';
+sh+='<select class="ep-sel" id="sSel">'+Array.from({length:8},(_,n)=>'<option value="'+(n+1)+'">Season '+(n+1)+'</option>').join('')+'</select>';
+sh+='<div id="epRows">';
+for(let e=1;e<=13;e++){
+  const pct=0;
+  const circ=113.1;
+  const dash=circ*pct/100;
+  sh+='<div class="ep-row" data-ep="'+e+'" onclick="selEpRow(this,'+e+')">'
+  +'<div class="ep-thumb"><div class="ep-ph">\ud83c\udfac</div></div>'
+  +'<div class="ep-name">Episode '+e+'</div>'
+  +'<div class="ep-prog"><svg viewBox="0 0 40 40"><circle class="bg" cx="20" cy="20" r="18"/><circle class="fg" cx="20" cy="20" r="18" stroke-dasharray="'+dash+' '+circ+'"/></svg><div class="ep-pct">'+pct+'%</div></div>'
+  +'</div>';
+}
+sh+='</div></div>';
 }
 
-sh+=`<div class="src-s"><h4>Sources</h4><div class="srcg">${SRCS.map((s,n)=>`<button class="src-b${n===0?' on':''}" onclick="playSrc(${n})">${s.n}</button>`).join('')}</div></div>`;
+/* Sources */
+sh+='<div class="src-s"><h4>Sources</h4><div class="srcg">'+SRCS.map((s,n)=>'<button class="src-b'+(n===0?' on':'')+'" onclick="playSrc('+n+')">'+s.n+'</button>').join('')+'</div></div>';
 
 if(ani||mt(i)==='tv'){
-sh+=`<div class="src-l">Anime Sites</div><div class="srcg">${ANIME_SRCS.map(s=>`<button class="src-b" onclick="openAni('${s.u}','${encodeURIComponent(t)}')">${s.n}</button>`).join('')}</div>`;
+sh+='<div class="src-l">Anime Sites</div><div class="srcg" style="padding:0 16px">'+ANIME_SRCS.map(s=>'<button class="src-b" onclick="openAni(\''+s.u+'\',\''+encodeURIComponent(t)+'\')">'+s.n+'</button>').join('')+'</div>';
 }
 
 document.getElementById('dtBody').innerHTML=sh;
@@ -583,6 +661,15 @@ document.body.style.overflow='hidden';
 window.closeDt=function(){
 document.getElementById('detail').classList.remove('open');
 document.body.style.overflow='';
+/* Restore original detail structure if it was replaced by live page */
+const d=document.getElementById('detail');
+if(!d.querySelector('.dt-hero')){
+  d.innerHTML='<div class="dt-back" onclick="closeDt()">'
+  +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>'
+  +'<span id="dtBackLabel">Home</span></div>'
+  +'<div class="dt-hero"><div class="dt-poster" id="dtPoster"></div><div class="dt-info" id="dtInfo"></div></div>'
+  +'<div id="dtBody"></div>';
+}
 };
 
 window.toggleSyn=function(){
@@ -592,10 +679,14 @@ if(p.classList.contains('cl')){p.classList.remove('cl');b.textContent='Less'}
 else{p.classList.add('cl');b.textContent='More'}
 };
 
-window.selEp=function(b){
-document.querySelectorAll('.ep-b').forEach(x=>x.classList.remove('on'));
-b.classList.add('on');
+window.selEpRow=function(row,ep){
+document.querySelectorAll('.ep-row').forEach(r=>r.style.background='');
+row.style.background='rgba(0,188,212,0.08)';
+row.dataset.selected='1';
+/* store selected ep for playback */
+window._selEp=ep;
 };
+window._selEp=1;
 
 window.toggleList=function(id){
 const idx=myList.indexOf(id);
@@ -612,17 +703,18 @@ const s=SRCS[n],i=cur,t=title(i);
 let url;
 if(mt(i)==='movie'){url=s.m.replace('{id}',i.id)}
 else{
-const se=document.getElementById('sSel'),ep=document.querySelector('.ep-b.on');
-const sn=se?se.value:'1',en=ep?ep.dataset.ep:'1';
-url=s.t.replace('{id}',i.id).replace('{s}',sn).replace('{e}',en);
+  const se=document.getElementById('sSel');
+  const sn=se?se.value:'1';
+  const en=window._selEp||1;
+  url=s.t.replace('{id}',i.id).replace('{s}',sn).replace('{e}',en);
 }
 if(window.TVBridge){window.TVBridge.openEmbed(url);return}
 if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.openEmbed){
-window.webkit.messageHandlers.openEmbed.postMessage(url);return}
+  window.webkit.messageHandlers.openEmbed.postMessage(url);return}
 document.getElementById('plFrame').src=url;
 document.getElementById('plTi').textContent=t;
 document.getElementById('plTabs').innerHTML=SRCS.map((x,j)=>
-`<button class="pl-tab${j===n?' on':''}" onclick="switchSrc(${j})">${x.n}</button>`).join('');
+  '<button class="pl-tab'+(j===n?' on':'')+'" onclick="switchSrc('+j+')">'+x.n+'</button>').join('');
 document.getElementById('player').classList.add('open');
 };
 
@@ -636,7 +728,7 @@ window.openAni=function(tmpl,t){
 const url=tmpl.replace('{t}',t);
 if(window.TVBridge){window.TVBridge.openEmbed(url);return}
 if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.openEmbed){
-window.webkit.messageHandlers.openEmbed.postMessage(url);return}
+  window.webkit.messageHandlers.openEmbed.postMessage(url);return}
 if(window._safeOpen){window._safeOpen(url,'_blank')}
 else{location.href=url}
 };
@@ -644,7 +736,7 @@ else{location.href=url}
 window.openExt=function(url){
 if(window.TVBridge){window.TVBridge.openEmbed(url);return}
 if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.openEmbed){
-window.webkit.messageHandlers.openEmbed.postMessage(url);return}
+  window.webkit.messageHandlers.openEmbed.postMessage(url);return}
 if(window._safeOpen){window._safeOpen(url,'_blank')}
 else{location.href=url}
 };
@@ -654,28 +746,27 @@ let sTo;
 document.getElementById('searchIn').addEventListener('input',function(){
 clearTimeout(sTo);
 sTo=setTimeout(()=>{
-const q=this.value.trim().toLowerCase();
-if(!q){renderSearchDefault();return}
-document.getElementById('searchCats').innerHTML='';
-const res=allItems().filter(i=>title(i).toLowerCase().includes(q)).slice(0,40);
-document.getElementById('searchGrid').innerHTML=res.length?
-res.map(i=>cardH(i)).join(''):
-'<div style="grid-column:1/-1" class="empty"><div class="empty-i">\ud83d\udd0d</div><h3>No results</h3><p>Try a different search term</p></div>';
+  const q=this.value.trim().toLowerCase();
+  if(!q){renderSearchDefault();return}
+  let pool=allItems();
+  if(searchCat==='movies')pool=pool.filter(i=>mt(i)==='movie');
+  else if(searchCat==='tv')pool=pool.filter(i=>mt(i)==='tv');
+  else if(searchCat==='anime')pool=pool.filter(i=>isAni(i));
+  const res=pool.filter(i=>title(i).toLowerCase().includes(q)).slice(0,40);
+  document.getElementById('searchGrid').innerHTML=res.length?
+    res.map(i=>cardH(i)).join(''):
+    '<div style="grid-column:1/-1" class="empty"><div class="empty-i">\ud83d\udd0d</div><h3>No results</h3><p>Try a different search term</p></div>';
 },200);
 });
 
 /* INIT */
 renderHome();
 renderSearchDefault();
-renderLive();
-renderMore();
-
-document.querySelectorAll('.ti').forEach(t=>t.addEventListener('click',()=>switchTab(t.dataset.tab)));
 
 document.addEventListener('keydown',e=>{
 if(e.key==='Escape'){
-if(document.getElementById('player').classList.contains('open'))closePl();
-else if(document.getElementById('detail').classList.contains('open'))closeDt();
+  if(document.getElementById('player').classList.contains('open'))closePl();
+  else if(document.getElementById('detail').classList.contains('open'))closeDt();
 }
 if(e.key==='/'&&!e.ctrlKey&&!e.metaKey){e.preventDefault();switchTab('search')}
 });
