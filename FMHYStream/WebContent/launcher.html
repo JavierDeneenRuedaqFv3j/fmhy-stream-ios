@@ -402,7 +402,7 @@ background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(10,10,10,.95) 60%);bo
 <span class="player-ti" id="plTi"></span>
 <div class="player-tabs" id="plTabs"></div>
 </div>
-<iframe class="player-frame" id="plFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-presentation" allowfullscreen allow="autoplay;fullscreen;picture-in-picture;encrypted-media"></iframe>
+<iframe class="player-frame" id="plFrame" allowfullscreen allow="autoplay;fullscreen;picture-in-picture;encrypted-media"></iframe>
 </div>
 
 <!-- SEARCH -->
@@ -441,15 +441,11 @@ let tab='home',myList=JSON.parse(localStorage.getItem('fl')||'[]'),cur=null,hero
 
 const SRCS=[
 {n:'Videasy',m:'https://player.videasy.net/movie/{id}',t:'https://player.videasy.net/tv/{id}/{s}/{e}'},
-{n:'VidSrc',m:'https://vidsrc.icu/embed/movie/{id}',t:'https://vidsrc.icu/embed/tv/{id}/{s}/{e}'},
-{n:'VidSrc Pro',m:'https://vidsrc.pro/embed/movie/{id}',t:'https://vidsrc.pro/embed/tv/{id}/{s}/{e}'},
-{n:'Embed.su',m:'https://embed.su/embed/movie/{id}',t:'https://embed.su/embed/tv/{id}/{s}/{e}'},
-{n:'AutoEmbed',m:'https://player.autoembed.cc/embed/movie/{id}',t:'https://player.autoembed.cc/embed/tv/{id}/{s}/{e}'},
-{n:'SuperEmbed',m:'https://multiembed.mov/?video_id={id}&tmdb=1',t:'https://multiembed.mov/?video_id={id}&tmdb=1&s={s}&e={e}'},
-{n:'2Embed',m:'https://www.2embed.cc/embed/{id}',t:'https://www.2embed.cc/embedtv/{id}&s={s}&e={e}'},
-{n:'NontonGo',m:'https://www.nontongo.win/embed/movie/{id}',t:'https://www.nontongo.win/embed/tv/{id}/{s}/{e}'},
 {n:'Vidlink',m:'https://vidlink.pro/movie/{id}',t:'https://vidlink.pro/tv/{id}/{s}/{e}'},
-{n:'MoviesAPI',m:'https://moviesapi.club/movie/{id}',t:'https://moviesapi.club/tv/{id}-{s}-{e}'}
+{n:'MoviesAPI',m:'https://moviesapi.club/movie/{id}',t:'https://moviesapi.club/tv/{id}-{s}-{e}'},
+{n:'SuperEmbed',m:'https://multiembed.mov/?video_id={id}&tmdb=1',t:'https://multiembed.mov/?video_id={id}&tmdb=1&s={s}&e={e}'},
+{n:'Vidsrc.cc',m:'https://vidsrc.cc/v2/embed/movie/{id}',t:'https://vidsrc.cc/v2/embed/tv/{id}/{s}/{e}'},
+{n:'SmashyStream',m:'https://player.smashy.stream/movie/{id}',t:'https://player.smashy.stream/tv/{id}/{s}/{e}'}
 ];
 const ANIME_SRCS=[
 {n:'AnimeKai',u:'https://animekai.to/browser?keyword={t}'},
@@ -460,7 +456,8 @@ const ANIME_SRCS=[
 
 const LIVE_TV=[
 {n:'DaddyLive TV',u:'https://dlstreams.top/24-7-channels.php',d:'24/7 Live Channels',ic:'📺'},
-{n:'TVPass',u:'https://tvpass.org/',d:'US TV & Sports',ic:'📡'},
+{n:'123TV',u:'https://123tvnow.me/',d:'US TV Channels',ic:'📡'},
+{n:'AqStream',u:'https://aqstream.com/',d:'Live TV & Sports',ic:'📡'},
 {n:'NTV',u:'http://ntv.cx/',d:'TV Aggregator',ic:'🌐'},
 {n:'Famelack',u:'https://famelack.com/',d:'TV & Sports',ic:'📻'},
 {n:'StreamSports99',u:'https://streamsports99.ru/live-tv',d:'TV & Sports',ic:'📺'},
@@ -480,7 +477,9 @@ const LIVE_SPORTS=[
 
 /* AD BLOCKER - prevent popup/redirect hijacking from embeds */
 (function adBlock(){
-window.open=function(){return null};
+var _open=window.open;
+window._safeOpen=_open; // preserve for our own use
+window.open=function(){return null}; // block ad popups
 document.addEventListener('click',function(e){
   if(e.target.closest('.player')&&!e.target.closest('.player-hd')&&!e.target.closest('.player-frame')){
     e.preventDefault();e.stopPropagation();
@@ -740,20 +739,17 @@ const url=tmpl.replace('{t}',t);
 if(window.TVBridge){window.TVBridge.openEmbed(url);return}
 if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.openEmbed){
 window.webkit.messageHandlers.openEmbed.postMessage(url);return}
-document.getElementById('plFrame').src=url;
-document.getElementById('plTi').textContent=decodeURIComponent(t);
-document.getElementById('plTabs').innerHTML='';
-document.getElementById('player').classList.add('open');
+if(window._safeOpen){window._safeOpen(url,'_blank')}
+else{location.href=url}
 };
 
 window.openExt=function(url){
 if(window.TVBridge){window.TVBridge.openEmbed(url);return}
 if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.openEmbed){
 window.webkit.messageHandlers.openEmbed.postMessage(url);return}
-document.getElementById('plFrame').src=url;
-document.getElementById('plTi').textContent='';
-document.getElementById('plTabs').innerHTML='';
-document.getElementById('player').classList.add('open');
+// Browser: open in new tab (live/external sites block iframes)
+if(window._safeOpen){window._safeOpen(url,'_blank')}
+else{location.href=url}
 };
 
 /* SEARCH */
