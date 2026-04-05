@@ -75,7 +75,15 @@ class PlayerViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         "revcontent.com","taboola.com","outbrain.com",
         "disqusads.com","adbrite.com","bidvertiser.com",
         "bongacams.com","chaturbate.com","stripchat.com",
-        "livejasmin.com","cam4.com","imlive.com"
+        "livejasmin.com","cam4.com","imlive.com",
+        "onclicka.com","onclickax.com","tsyndicate.com",
+        "monetag.com","profitablegateway.com","ad-maven.com",
+        "popadscdn.net","serve.popads.net","fastclick.net",
+        "adnxs.com","adsrvr.org","criteo.com","demdex.net",
+        "moatads.com","openx.net","pubmatic.com",
+        "rubiconproject.com","smartadserver.com","spotxchange.com",
+        "trafpal.com","thaudray.com","adf.ly","linkbucks.com",
+        "shorte.st","bc.vc","aimtll.com","cdnads.com","trkmbb.com"
     ]
 
     override func loadView() {
@@ -99,6 +107,19 @@ class PlayerViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         if let url = url {
             webView.load(URLRequest(url: url))
         }
+
+        // Inject ad blocker JS after page loads
+        let adBlockJS = """
+        window.open=function(){return null};
+        window.alert=function(){};
+        window.confirm=function(){return false};
+        var s=document.createElement('style');
+        s.textContent='[class*="ad-"],[class*="ads-"],[id*="ad-"],[id*="ads-"],.popup,.popunder,.overlay-ad,.ad-overlay,[class*="popup"],[class*="banner"]{display:none!important;pointer-events:none!important}';
+        document.head.appendChild(s);
+        setInterval(function(){document.querySelectorAll('[class*="pop"],[class*="overlay"],[class*="modal"]').forEach(function(el){var z=parseInt(getComputedStyle(el).zIndex||0);if(z>999)el.remove()})},3000);
+        """
+        let userScript = WKUserScript(source: adBlockJS, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        webView.configuration.userContentController.addUserScript(userScript)
 
         // Add close button
         let closeBtn = UIButton(type: .system)

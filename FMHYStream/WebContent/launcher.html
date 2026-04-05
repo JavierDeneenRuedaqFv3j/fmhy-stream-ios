@@ -286,6 +286,45 @@ border-radius:4px;transition:all var(--ease);cursor:pointer}
 line-height:1.7;border-top:1px solid rgba(255,255,255,.05);margin-top:20px}
 .app-footer a{color:var(--primary);text-decoration:none}
 .app-footer a:hover{text-decoration:underline}
+
+/* LIVE TV */
+.live-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:30px}
+.live-card{display:flex;align-items:center;gap:12px;padding:14px 16px;
+background:var(--bg-card);border:1px solid rgba(255,255,255,.06);border-radius:var(--rad);
+cursor:pointer;transition:all var(--ease)}
+.live-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
+.live-card:active{transform:scale(.97)}
+.live-ic{font-size:1.3rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+background:rgba(255,255,255,.06);border-radius:10px;flex-shrink:0}
+.live-name{font-size:.875rem;font-weight:600;color:var(--text)}
+.live-desc{font-size:.6875rem;color:var(--text-muted);margin-top:2px}
+.live-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;
+background:var(--primary);border-radius:4px;font-size:.625rem;font-weight:700;color:#fff;letter-spacing:.5px}
+.live-dot{width:6px;height:6px;background:#fff;border-radius:50%;animation:livePulse 1.5s ease infinite}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:.3}}
+.live-hero{position:relative;padding:40px var(--pad) 30px;margin-bottom:10px;
+background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(10,10,10,.95) 60%);border-radius:0 0 20px 20px}
+.live-hero h1{font-family:var(--font-h);font-size:2rem;font-weight:800;margin-bottom:6px}
+.live-hero p{color:var(--text-sec);font-size:.875rem;max-width:480px}
+
+/* PLAYER AD SHIELD */
+.player-shield{position:absolute;inset:0;z-index:1;cursor:pointer;background:transparent}
+.player-shield.off{display:none}
+
+@media(max-width:768px){
+.live-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+.live-card{padding:10px 12px;gap:10px}
+.live-ic{width:34px;height:34px;font-size:1.1rem;border-radius:8px}
+.live-name{font-size:.8125rem}
+.live-hero{padding:30px var(--pad) 20px}
+.live-hero h1{font-size:1.4rem}
+.live-hero p{font-size:.8125rem}
+.mob-item{padding:4px 6px}
+}
+@media(max-width:390px){
+.live-grid{grid-template-columns:repeat(2,1fr);gap:6px}
+.live-card{padding:8px 10px}
+}
 </style>
 </head>
 <body>
@@ -298,6 +337,7 @@ line-height:1.7;border-top:1px solid rgba(255,255,255,.05);margin-top:20px}
 <li class="nav-tab" data-tab="movies">Movies</li>
 <li class="nav-tab" data-tab="tv">TV Shows</li>
 <li class="nav-tab" data-tab="anime">Anime</li>
+<li class="nav-tab" data-tab="live">Live</li>
 <li class="nav-tab" data-tab="mylist">My List</li>
 </ul>
 <div class="nav-right">
@@ -316,14 +356,19 @@ line-height:1.7;border-top:1px solid rgba(255,255,255,.05);margin-top:20px}
 <a class="sb-link" onclick="go('movies')">Movies</a>
 <a class="sb-link" onclick="go('tv')">TV Shows</a>
 <a class="sb-link" onclick="go('anime')">Anime</a>
+<a class="sb-link" onclick="go('live')">Live TV</a>
 <a class="sb-link" onclick="go('mylist')">My List</a>
+<div class="sb-h">Live TV</div>
+<a class="sb-link" onclick="openExt('https://dlstreams.top/24-7-channels.php')">DaddyLive TV</a>
+<a class="sb-link" onclick="openExt('https://tvpass.org/')">TVPass</a>
+<a class="sb-link" onclick="openExt('https://streamed.pk/')">Streamed Sports</a>
 <div class="sb-h">Anime Sites</div>
 <a class="sb-link" onclick="openExt('https://animekai.to/home')">AnimeKai</a>
 <a class="sb-link" onclick="openExt('https://animepahe.pw/')">AnimePahe</a>
 <a class="sb-link" onclick="openExt('https://hianime.to/home')">HiAnime</a>
 <div class="sb-h">Info</div>
 <a class="sb-link" onclick="openExt('https://fmhy.net/')">FMHY Wiki</a>
-<div style="margin-top:20px;font-size:.6875rem;color:var(--text-muted)">FMHY Stream v10</div>
+<div style="margin-top:20px;font-size:.6875rem;color:var(--text-muted)">FMHY Stream v11</div>
 </aside>
 
 <!-- HERO -->
@@ -337,7 +382,7 @@ line-height:1.7;border-top:1px solid rgba(255,255,255,.05);margin-top:20px}
 <!-- FOOTER -->
 <footer class="app-footer" id="appFooter">
 <p>FMHY Stream does not host any content. All media is provided by third-party embed services.</p>
-<p>Powered by <a href="https://fmhy.net/" target="_blank">FMHY</a> &bull; For educational purposes only</p>
+<p>Powered by <a href="https://fmhy.net/" target="_blank">FMHY</a> &bull; v11 &bull; For educational purposes only</p>
 </footer>
 
 <!-- DETAIL -->
@@ -357,7 +402,7 @@ line-height:1.7;border-top:1px solid rgba(255,255,255,.05);margin-top:20px}
 <span class="player-ti" id="plTi"></span>
 <div class="player-tabs" id="plTabs"></div>
 </div>
-<iframe class="player-frame" id="plFrame" allowfullscreen allow="autoplay;fullscreen;picture-in-picture;encrypted-media"></iframe>
+<iframe class="player-frame" id="plFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-presentation" allowfullscreen allow="autoplay;fullscreen;picture-in-picture;encrypted-media"></iframe>
 </div>
 
 <!-- SEARCH -->
@@ -376,6 +421,7 @@ line-height:1.7;border-top:1px solid rgba(255,255,255,.05);margin-top:20px}
 <button class="mob-item" data-tab="movies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg><span>Movies</span></button>
 <button class="mob-item" data-tab="tv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg><span>TV</span></button>
 <button class="mob-item" data-tab="anime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Anime</span></button>
+<button class="mob-item" data-tab="live"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 010 8.49"/><path d="M7.76 16.24a6 6 0 010-8.49"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M4.93 19.07a10 10 0 010-14.14"/></svg><span>Live</span></button>
 <button class="mob-item" data-tab="mylist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>My List</span></button>
 </nav>
 
@@ -411,6 +457,43 @@ const ANIME_SRCS=[
 {n:'HiAnime',u:'https://hianime.to/search?keyword={t}'},
 {n:'Miruro',u:'https://www.miruro.tv/search?query={t}'}
 ];
+
+const LIVE_TV=[
+{n:'DaddyLive TV',u:'https://dlstreams.top/24-7-channels.php',d:'24/7 Live Channels',ic:'📺'},
+{n:'TVPass',u:'https://tvpass.org/',d:'US TV & Sports',ic:'📡'},
+{n:'NTV',u:'http://ntv.cx/',d:'TV Aggregator',ic:'🌐'},
+{n:'Famelack',u:'https://famelack.com/',d:'TV & Sports',ic:'📻'},
+{n:'StreamSports99',u:'https://streamsports99.ru/live-tv',d:'TV & Sports',ic:'📺'},
+{n:'EasyWebTV',u:'https://zhangboheng.github.io/Easy-Web-TV-M3u8/routes/countries.html',d:'M3U Channels by Country',ic:'🌍'},
+{n:'RgShows',u:'https://www.rgshows.ru/livetv/',d:'TV & Sports',ic:'📡'},
+{n:'CineBolt TV',u:'https://cinebolt.net/live',d:'Live TV',ic:'⚡'},
+{n:'Movish TV',u:'https://movish.net/live-broadcasts',d:'Live Broadcasts',ic:'📺'},
+{n:'SportsBite',u:'https://live.moviebite.cc/channels',d:'TV & Sports',ic:'🎬'}
+];
+const LIVE_SPORTS=[
+{n:'Streamed',u:'https://streamed.pk/',d:'Stream Aggregator',ic:'⚽'},
+{n:'WatchSports',u:'https://watchsports.to/',d:'All Sports',ic:'🏀'},
+{n:'SportyHunter',u:'https://sportyhunter.com/',d:'Community Aggregator',ic:'🏈'},
+{n:'StreamEast',u:'https://streameast.ga/',d:'Sports Streams',ic:'🎾'},
+{n:'LiveTV',u:'https://livetv.sx/enx/',d:'Live Sports Events',ic:'🏆'}
+];
+
+/* AD BLOCKER - prevent popup/redirect hijacking from embeds */
+(function adBlock(){
+window.open=function(){return null};
+document.addEventListener('click',function(e){
+  if(e.target.closest('.player')&&!e.target.closest('.player-hd')&&!e.target.closest('.player-frame')){
+    e.preventDefault();e.stopPropagation();
+  }
+},true);
+})();
+
+function liveCardHtml(s){
+return'<div class="live-card" onclick="openExt(\''+s.u+'\')">'+
+'<div class="live-ic">'+s.ic+'</div>'+
+'<div><div class="live-name">'+s.n+'</div><div class="live-desc">'+s.d+'</div></div>'+
+'</div>';
+}
 
 function title(i){return i.t||i.title||i.name||''}
 function year(i){return i.y||(i.release_date||i.first_air_date||'').slice(0,4)}
@@ -547,6 +630,13 @@ h+=`<div class="section"><div class="section-head"><h2 class="section-title">Bro
 <button class="src-btn" onclick="openExt('https://hianime.to/home')">HiAnime</button>
 <button class="src-btn" onclick="openExt('https://www.miruro.tv/')">Miruro</button>
 </div></div>`;
+break;
+case'live':
+h+=`<div class="live-hero"><h1>📡 Live TV & Sports</h1><p>Watch live television channels and sports events from the best free sources curated by FMHY.</p></div>`;
+h+=`<div class="section"><div class="section-head"><h2 class="section-title">Live TV Channels</h2><span class="live-badge"><span class="live-dot"></span>LIVE</span></div>
+<div class="live-grid">${LIVE_TV.map(liveCardHtml).join('')}</div></div>`;
+h+=`<div class="section"><div class="section-head"><h2 class="section-title">Live Sports</h2><span class="live-badge"><span class="live-dot"></span>LIVE</span></div>
+<div class="live-grid">${LIVE_SPORTS.map(liveCardHtml).join('')}</div></div>`;
 break;
 case'mylist':
 const ml=allItems().filter(i=>myList.includes(i.id));
