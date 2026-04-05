@@ -8,7 +8,6 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         let config = WKWebViewConfiguration()
         config.allowsInlineMediaPlayback = true
         config.mediaTypesRequiringUserActionForPlayback = []
-        config.preferences.javaScriptEnabled = true
         config.defaultWebpagePreferences.allowsContentJavaScript = true
 
         webView = WKWebView(frame: .zero, configuration: config)
