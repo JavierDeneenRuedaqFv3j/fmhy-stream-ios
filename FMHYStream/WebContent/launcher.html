@@ -41,7 +41,7 @@ background:linear-gradient(90deg,#fff,#999);-webkit-background-clip:text;
 .nav-tabs{display:flex;gap:2px;list-style:none}
 .nav-tab{padding:8px 16px;font-size:.8125rem;font-weight:500;color:var(--text-sec);
 border-radius:6px;transition:all var(--ease);cursor:pointer;white-space:nowrap}
-.nav-tab:hover{color:var(--text)}.nav-tab.active{color:#fff;background:rgba(255,255,255,.1)}
+.nav-tab:hover{color:var(--text)}.nav-tab.active{color:#fff;font-weight:600}
 .nav-right{margin-left:auto;display:flex;align-items:center;gap:6px}
 .nav-btn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;
 border-radius:50%;transition:background var(--ease)}
@@ -63,26 +63,27 @@ margin-bottom:10px;text-shadow:0 3px 12px rgba(0,0,0,.8)}
 .hero-desc{font-size:.875rem;line-height:1.6;color:var(--text-sec);
 display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:18px}
 .hero-btns{display:flex;gap:10px}
-.btn-play{display:flex;align-items:center;gap:8px;padding:10px 24px;
-background:var(--primary);color:#fff;font-weight:600;font-size:.875rem;
+.btn-play{display:flex;align-items:center;gap:8px;padding:10px 28px;
+background:#fff;color:#0a0a0a;font-weight:700;font-size:.875rem;
 border-radius:var(--rad);transition:all var(--ease)}
-.btn-play:hover{filter:brightness(1.15);transform:scale(1.04)}
-.btn-play:focus{outline:2px solid var(--primary);outline-offset:3px}
+.btn-play:hover{background:#e5e5e5;transform:scale(1.04)}
+.btn-play:focus{outline:2px solid #fff;outline-offset:3px}
 .btn-info{display:flex;align-items:center;gap:8px;padding:10px 24px;
-background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+background:transparent;border:1px solid rgba(255,255,255,.5);
 color:#fff;font-weight:500;font-size:.875rem;border-radius:var(--rad);transition:all var(--ease)}
-.btn-info:hover{background:rgba(255,255,255,.22)}
+.btn-info:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
 .hero .swiper-pagination{bottom:20px!important}
 .hero .swiper-pagination-bullet{width:7px;height:7px;background:rgba(255,255,255,.45);opacity:1;transition:all .3s}
 .hero .swiper-pagination-bullet-active{width:22px;border-radius:4px;background:var(--primary)}
 
 /* CONTENT */
 .content{position:relative;z-index:2;margin-top:-60px;padding-bottom:80px}
-.section{padding:0 var(--pad);margin-bottom:1.75rem}
-.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.section{padding:0 var(--pad);margin-bottom:2.75rem}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .section-title{font-family:var(--font-h);font-size:1.15rem;font-weight:700;
-background:linear-gradient(90deg,red,#850000);-webkit-background-clip:text;
--webkit-text-fill-color:transparent;background-clip:text}
+color:var(--text);display:flex;align-items:center;gap:0}
+.section-title::before{content:'';display:inline-block;width:4px;height:1.1em;
+background:var(--primary);border-radius:2px;margin-right:10px;flex-shrink:0}
 .row .swiper-slide{width:auto}
 .row .swiper-wrapper{align-items:stretch}
 
@@ -104,12 +105,12 @@ color:var(--text-sec);transition:color var(--ease)}
 .card:hover .card-name{color:var(--text)}
 
 /* LANDSCAPE CARD */
-.card.land{width:275px}.card.land .card-img{aspect-ratio:16/9}
+.card.land{width:280px}.card.land .card-img{aspect-ratio:16/9}.card.land .card-name{display:none}
 
 /* TOP 10 */
-.t10{display:flex;align-items:flex-end;width:210px}
-.t10-n{font-family:var(--font-h);font-size:5.5rem;font-weight:800;line-height:.78;
-color:transparent;-webkit-text-stroke:2px #555;margin-right:-18px;z-index:1;position:relative;flex-shrink:0}
+.t10{display:flex;align-items:flex-end;width:220px}
+.t10-n{font-family:var(--font-h);font-size:6.5rem;font-weight:800;line-height:.78;
+color:transparent;-webkit-text-stroke:3px var(--primary);margin-right:-18px;z-index:1;position:relative;flex-shrink:0}
 .t10 .card{width:115px}
 
 /* DETAIL */
@@ -216,7 +217,7 @@ padding:4px 10px;color:var(--text-muted);font-size:.5625rem;font-weight:500;tran
 .hero-title{font-size:1.6rem}
 .hero-ct{max-width:75%;bottom:18%}
 .hero-desc{-webkit-line-clamp:2;font-size:.8rem}
-.card{width:125px}.card.land{width:230px}
+.card{width:125px}.card.land{width:220px}
 .t10{width:170px}.t10-n{font-size:4rem}.t10 .card{width:95px}
 .section-title{font-size:1rem}
 .detail-h{font-size:1.4rem}
@@ -224,8 +225,8 @@ padding:4px 10px;color:var(--text-muted);font-size:.5625rem;font-weight:500;tran
 .mob-nav{display:flex}.content{padding-bottom:70px}
 }
 @media(min-width:1200px){
-.card{width:175px}.card.land{width:310px}
-.t10{width:250px}.t10 .card{width:135px}
+.card{width:175px}.card.land{width:300px}
+.t10{width:250px}.t10-n{font-size:7.5rem}.t10 .card{width:135px}
 }
 
 /* ANIM */
@@ -236,13 +237,30 @@ padding:4px 10px;color:var(--text-muted);font-size:.5625rem;font-weight:500;tran
 .shimmer{background:linear-gradient(90deg,var(--bg-card) 25%,#252525 50%,var(--bg-card) 75%);
 background-size:200% 100%;animation:sh 1.5s infinite}
 @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* TOP 10 HEADER */
+.t10-header{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;padding:0 var(--pad)}
+.t10-header .t10-big{font-family:var(--font-h);font-size:2rem;font-weight:800;color:var(--primary)}
+.t10-header .t10-sub{font-size:.875rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:1px}
+
+/* FILTER TABS */
+.sec-tabs{display:flex;gap:2px;align-items:center}
+.sec-tab{padding:4px 14px;font-size:.75rem;font-weight:500;color:var(--text-muted);
+border-radius:4px;transition:all var(--ease);cursor:pointer}
+.sec-tab:hover{color:var(--text)}.sec-tab.on{color:var(--primary);font-weight:600}
+
+/* FOOTER */
+.app-footer{text-align:center;padding:40px var(--pad) 30px;color:var(--text-muted);font-size:.75rem;
+line-height:1.7;border-top:1px solid rgba(255,255,255,.05);margin-top:20px}
+.app-footer a{color:var(--primary);text-decoration:none}
+.app-footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-<span class="nav-logo">FMHY</span>
+<span class="nav-logo"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--primary)" style="vertical-align:middle;margin-right:3px"><path d="M8 5v14l11-7z"/></svg>FMHY</span>
 <ul class="nav-tabs" id="navTabs">
 <li class="nav-tab active" data-tab="home">Home</li>
 <li class="nav-tab" data-tab="movies">Movies</li>
@@ -283,6 +301,12 @@ background-size:200% 100%;animation:sh 1.5s infinite}
 
 <!-- CONTENT -->
 <div class="content" id="content"></div>
+
+<!-- FOOTER -->
+<footer class="app-footer" id="appFooter">
+<p>FMHY Stream does not host any content. All media is provided by third-party embed services.</p>
+<p>Powered by <a href="https://fmhy.net/" target="_blank">FMHY</a> &bull; For educational purposes only</p>
+</footer>
 
 <!-- DETAIL -->
 <div class="detail" id="detail">
@@ -328,7 +352,7 @@ background-size:200% 100%;animation:sh 1.5s infinite}
 <script>
 (function(){
 'use strict';
-const D=window.STREAM_DATA,IMG='https://image.tmdb.org/t/p/';
+const D=window.STREAM_DATA||window.DATA||DATA,IMG='https://image.tmdb.org/t/p/';
 const P=(u,q=60)=>`https://wsrv.nl/?url=${encodeURIComponent(u)}&output=webp&q=${q}&n=-1`;
 const poster=(p,s='w342')=>p?P(IMG+s+p,50):'';
 const backdrop=(p,s='w780')=>p?P(IMG+s+p,65):'';
@@ -356,11 +380,15 @@ const ANIME_SRCS=[
 {n:'Miruro',u:'https://www.miruro.tv/search?query={t}'}
 ];
 
-function title(i){return i.title||i.name||''}
-function year(i){return(i.release_date||i.first_air_date||'').slice(0,4)}
-function rate(i){return i.vote_average?i.vote_average.toFixed(1):'N/A'}
-function genres(i){return(i.genre_ids||[]).map(g=>D.genre_map[g]||'').filter(Boolean)}
-function isAni(i){return(i.genre_ids||[]).includes(16)}
+function title(i){return i.t||i.title||i.name||''}
+function year(i){return i.y||(i.release_date||i.first_air_date||'').slice(0,4)}
+function rate(i){const v=i.r||i.vote_average;return v?Number(v).toFixed(1):'N/A'}
+function genres(i){return(i.g||i.genre_ids||[]).map(g=>D.genre_map[g]||'').filter(Boolean)}
+function isAni(i){return(i.g||i.genre_ids||[]).includes(16)}
+function mt(i){return i.mt||i.media_type||'movie'}
+function bp(i){return i.bg||i.backdrop_path||''}
+function pp(i){return i.p||i.poster_path||''}
+function ov(i){return i.d||i.overview||''}
 
 function allItems(){
 const a=[],s=new Set();
@@ -382,20 +410,20 @@ if(!D.heroes||!D.heroes.length)return;
 el.innerHTML=D.heroes.map(i=>{
 const g=genres(i).slice(0,2);
 return`<div class="swiper-slide">
-<img class="hero-bg" src="${heroBg(i.backdrop_path)}" alt="" loading="eager">
+<img class="hero-bg" src="${heroBg(bp(i))}" alt="" loading="eager">
 <div class="hero-grad"></div>
 <div class="hero-ct">
 ${i.logo?`<img class="hero-logo" src="${logo(i.logo)}" alt="${title(i)}">`:`<h2 class="hero-title">${title(i)}</h2>`}
 <div class="hero-meta">
 <span class="hero-star">★ ${rate(i)}</span>
 <span>${year(i)}</span>
-<span>${i.media_type==='movie'?'Movie':'TV'}</span>
+<span>${mt(i)==='movie'?'Movie':'TV'}</span>
 ${g.map(x=>`<span class="hero-tag">${x}</span>`).join('')}
 </div>
-<p class="hero-desc">${i.overview||''}</p>
+<p class="hero-desc">${ov(i)}</p>
 <div class="hero-btns">
-<button class="btn-play" onclick="event.stopPropagation();openDt(${i.id},'${i.media_type}')">${svgPlay} Play</button>
-<button class="btn-info" onclick="event.stopPropagation();openDt(${i.id},'${i.media_type}')">${svgInfo} More Info</button>
+<button class="btn-play" onclick="event.stopPropagation();openDt(${i.id},'${mt(i)}')">${svgPlay} Play</button>
+<button class="btn-info" onclick="event.stopPropagation();openDt(${i.id},'${mt(i)}')">${svgInfo} See More</button>
 </div>
 </div>
 </div>`}).join('');
@@ -405,10 +433,10 @@ effect:'fade',fadeEffect:{crossFade:true},pagination:{el:'.swiper-pagination',cl
 
 /* RENDER CARD */
 function cardHtml(i,opts){
-const t=title(i),r=rate(i),tp=i.media_type==='movie'?'MOVIE':'TV';
-const img=opts&&opts.land?backdrop(i.backdrop_path,'w780'):poster(i.poster_path);
+const t=title(i),r=rate(i),tp=mt(i)==='movie'?'MOVIE':'TV';
+const img=opts&&opts.land?backdrop(bp(i),'w780'):poster(pp(i));
 const cls=opts&&opts.land?'card land':'card';
-return`<div class="${cls}" tabindex="0" onclick="openDt(${i.id},'${i.media_type}')" role="button">
+return`<div class="${cls}" tabindex="0" onclick="openDt(${i.id},'${mt(i)}')" role="button">
 <div class="card-img">
 ${img?`<img src="${img}" alt="${t}" loading="lazy">`:'<div class="shimmer" style="width:100%;height:100%"></div>'}
 <span class="card-badge tp">${tp}</span>
@@ -419,7 +447,7 @@ ${r!=='N/A'?`<span class="card-badge rt">${svgStar}${r}</span>`:''}
 }
 
 function t10Html(i,rank){
-return`<div class="t10" tabindex="0" onclick="openDt(${i.id},'${i.media_type}')" role="button">
+return`<div class="t10" tabindex="0" onclick="openDt(${i.id},'${mt(i)}')" role="button">
 <span class="t10-n">${rank}</span>
 ${cardHtml(i)}
 </div>`;
@@ -429,14 +457,17 @@ ${cardHtml(i)}
 function secHtml(name,items,opts){
 if(!items||!items.length)return'';
 const id='sw-'+name.replace(/\s+/g,'-').toLowerCase()+'-'+Math.random().toString(36).slice(2,6);
-let slides;
+let slides,header;
 if(opts&&opts.top10){
 slides=items.slice(0,10).map((i,n)=>`<div class="swiper-slide" style="width:auto">${t10Html(i,n+1)}</div>`).join('');
+header=`<div class="t10-header"><span class="t10-big">TOP 10</span><span class="t10-sub">${name.includes('Movie')?'Movies':'Content'} Today</span></div>`;
 }else{
 slides=items.map(i=>`<div class="swiper-slide" style="width:auto">${cardHtml(i,opts)}</div>`).join('');
+const tabs=opts&&opts.tabs?`<div class="sec-tabs">${opts.tabs.map((t,i)=>`<button class="sec-tab${i===0?' on':''}">${t}</button>`).join('')}</div>`:'';
+header=`<div class="section-head"><h2 class="section-title">${name}</h2>${tabs}</div>`;
 }
 return`<div class="section">
-<div class="section-head"><h2 class="section-title">${name}</h2></div>
+${header}
 <div class="swiper row ${id}"><div class="swiper-wrapper">${slides}</div></div>
 </div>`;
 }
@@ -447,36 +478,36 @@ const el=document.getElementById('content');
 let h='';
 switch(tab){
 case'home':
-h+=secHtml('Trending Now',D.trending,{land:true});
-h+=secHtml('Popular Movies',D.pop_movie);
+h+=secHtml('Trending Today',D.trending,{land:true,tabs:['Movies','Series']});
+h+=secHtml('Popular Movies',D.pop_movie,{land:true});
 h+=secHtml('Top 10 Movies',D.top_movie,{top10:true});
-h+=secHtml('Now Playing',D.now_playing);
-h+=secHtml('Popular TV Shows',D.pop_tv);
+h+=secHtml('Now Playing',D.now_playing,{land:true});
+h+=secHtml('Popular TV Shows',D.pop_tv,{land:true});
 h+=secHtml('Top 10 TV Shows',D.top_tv,{top10:true});
-h+=secHtml('Anime',D.anime);
-h+=secHtml('K-Drama',D.kdrama);
-h+=secHtml('Coming Soon',D.upcoming);
-h+=secHtml('Airing Today',D.airing);
+h+=secHtml('Anime',D.anime,{land:true});
+h+=secHtml('K-Drama',D.kdrama,{land:true});
+h+=secHtml('Coming Soon',D.upcoming,{land:true});
+h+=secHtml('Airing Today',D.airing,{land:true});
 if(D.genres)for(const[k,v]of Object.entries(D.genres)){
-h+=secHtml(k.charAt(0).toUpperCase()+k.slice(1),v)}
+h+=secHtml(k.charAt(0).toUpperCase()+k.slice(1),v,{land:true})}
 break;
 case'movies':
-h+=secHtml('Popular Movies',D.pop_movie);
+h+=secHtml('Popular Movies',D.pop_movie,{land:true});
 h+=secHtml('Top Rated',D.top_movie,{top10:true});
-h+=secHtml('Now Playing',D.now_playing);
-h+=secHtml('Coming Soon',D.upcoming);
+h+=secHtml('Now Playing',D.now_playing,{land:true});
+h+=secHtml('Coming Soon',D.upcoming,{land:true});
 if(D.genres)for(const[k,v]of Object.entries(D.genres)){
-const mv=v.filter(i=>i.media_type==='movie');if(mv.length)h+=secHtml(k.charAt(0).toUpperCase()+k.slice(1),mv)}
+const mv=v.filter(i=>mt(i)==='movie');if(mv.length)h+=secHtml(k.charAt(0).toUpperCase()+k.slice(1),mv,{land:true})}
 break;
 case'tv':
-h+=secHtml('Popular TV Shows',D.pop_tv);
+h+=secHtml('Popular TV Shows',D.pop_tv,{land:true});
 h+=secHtml('Top Rated',D.top_tv,{top10:true});
-h+=secHtml('Airing Today',D.airing);
-h+=secHtml('K-Drama',D.kdrama);
+h+=secHtml('Airing Today',D.airing,{land:true});
+h+=secHtml('K-Drama',D.kdrama,{land:true});
 break;
 case'anime':
-h+=secHtml('Popular Anime',D.anime);
-if(D.genres){const ani=D.genres.animation;if(ani)h+=secHtml('Animation',ani)}
+h+=secHtml('Popular Anime',D.anime,{land:true});
+if(D.genres){const ani=D.genres.animation;if(ani)h+=secHtml('Animation',ani,{land:true})}
 h+=`<div class="section"><div class="section-head"><h2 class="section-title">Browse Anime Sites</h2></div>
 <div class="src-grid" style="max-width:500px">
 <button class="src-btn" onclick="openExt('https://animekai.to/home')">AnimeKai</button>
@@ -487,7 +518,7 @@ h+=`<div class="section"><div class="section-head"><h2 class="section-title">Bro
 break;
 case'mylist':
 const ml=allItems().filter(i=>myList.includes(i.id));
-h+=ml.length?secHtml('My List',ml):'<div class="empty"><p>Your list is empty</p><p>Add movies and shows to keep track</p></div>';
+h+=ml.length?secHtml('My List',ml,{land:true}):'<div class="empty"><p>Your list is empty</p><p>Add movies and shows to keep track</p></div>';
 break;
 }
 el.innerHTML=h;
@@ -502,12 +533,12 @@ mousewheel:{forceToAxis:true}});
 }
 
 /* DETAIL */
-window.openDt=function(id,mt){
+window.openDt=function(id,mtype){
 const i=allItems().find(x=>x.id===id);if(!i)return;cur=i;
-document.getElementById('dtBd').src=backdrop(i.backdrop_path,'w1280');
+document.getElementById('dtBd').src=backdrop(bp(i),'w1280');
 const t=title(i),y=year(i),r=rate(i),g=genres(i),inL=myList.includes(i.id),ani=isAni(i);
 let sh='';
-if(i.media_type==='tv'){
+if(mt(i)==='tv'){
 sh+=`<div class="ep-sel"><select class="s-sel" id="sSel">${
 Array.from({length:8},(_,n)=>`<option value="${n+1}">Season ${n+1}</option>`).join('')
 }</select><div class="ep-grid" id="epGrid">${
@@ -517,16 +548,16 @@ Array.from({length:13},(_,n)=>`<button class="ep-btn${n===0?' on':''}" data-ep="
 sh+=`<div style="margin-top:18px"><div class="sources-h">Sources</div><div class="src-grid">${
 SRCS.map((s,n)=>`<button class="src-btn${n===0?' on':''}" onclick="playSrc(${n})">${s.n}</button>`).join('')
 }</div></div>`;
-if(ani||i.media_type==='tv'){
+if(ani||mt(i)==='tv'){
 sh+=`<div class="anime-h">Anime Sites</div><div class="src-grid">${
 ANIME_SRCS.map(s=>`<button class="src-btn" onclick="openAni('${s.u}','${encodeURIComponent(t)}')">${s.n}</button>`).join('')
 }</div>`;
 }
 document.getElementById('dtBody').innerHTML=`
 <h1 class="detail-h">${t}</h1>
-<div class="detail-meta"><span class="rt">★ ${r}</span><span>${y}</span><span>${i.media_type==='movie'?'Movie':'TV Series'}</span></div>
+<div class="detail-meta"><span class="rt">★ ${r}</span><span>${y}</span><span>${mt(i)==='movie'?'Movie':'TV Series'}</span></div>
 <div class="detail-genres">${g.map(x=>`<span class="detail-genre">${x}</span>`).join('')}</div>
-<p class="detail-desc">${i.overview||'No description available.'}</p>
+<p class="detail-desc">${ov(i)||'No description available.'}</p>
 <div class="detail-acts">
 <button class="btn-play" onclick="playSrc(0)">${svgPlay} Play Now</button>
 <button class="btn-info" onclick="toggleList(${i.id})">
@@ -551,7 +582,7 @@ window.toggleList=function(id){
 const idx=myList.indexOf(id);
 if(idx===-1)myList.push(id);else myList.splice(idx,1);
 localStorage.setItem('fl',JSON.stringify(myList));
-if(cur&&cur.id===id)openDt(id,cur.media_type);
+if(cur&&cur.id===id)openDt(id,mt(cur));
 if(tab==='mylist')renderContent();
 };
 
@@ -560,7 +591,7 @@ window.playSrc=function(n){
 if(!cur)return;
 const s=SRCS[n],i=cur,t=title(i);
 let url;
-if(i.media_type==='movie'){url=s.m.replace('{id}',i.id)}
+if(mt(i)==='movie'){url=s.m.replace('{id}',i.id)}
 else{
 const se=document.getElementById('sSel'),ep=document.querySelector('.ep-btn.on');
 const sn=se?se.value:'1',en=ep?ep.dataset.ep:'1';
